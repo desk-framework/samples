@@ -1,0 +1,25 @@
+{
+  "name": "sample",
+  "private": true,
+  "type": "module",
+  "prettier": {},
+  "scripts": {
+    "clean": "rimraf dist .test-run",
+    "dev": "node esbuild.dev.js",
+    "check": "tsc --noEmit -p .",
+    "build": "npm run clean && node esbuild.js",
+    "test": "node esbuild.test.js",
+    "test-watch": "node esbuild.test.js --watch"
+  },
+  "dependencies": {
+    "desk-frame": "next",
+    "@desk-framework/webcontext": "next"
+  },
+  "devDependencies": {
+    "@desk-framework/test": "next",
+    "@types/node": "latest",
+    "rimraf": "5.0",
+    "typescript": "5.1",
+    "esbuild": "^0.17.16"
+  }
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sample</title>
+    <style>
+      article {
+        max-width: 30rem;
+        margin: 1rem auto;
+      }
+      #graph1 {
+        position: relative;
+        border: 1px solid #ddd;
+        height: 16rem;
+        margin: 1em 0;
+      }
+    </style>
+  </head>
+  <body>
+    <article>
+      <h1>Article</h1>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc interdum
+        elit gravida tellus tempus imperdiet. Mauris sollicitudin odio sed
+        eleifend ullamcorper. Nunc sodales porttitor leo ac auctor. Ut quis
+        blandit velit, ac varius erat. Suspendisse potenti.
+      </p>
+
+      <div id="graph1"></div>
+
+      <p>
+        Nunc metus enim, vestibulum eu velit a, tincidunt hendrerit velit.
+        Integer quam lacus, aliquet quis erat eu, tempor pellentesque est.
+        Mauris suscipit in nisi vel blandit. Curabitur non nulla et arcu ornare
+        bibendum. Aenean eu massa ac nisi rhoncus aliquam in sit amet augue.
+        Praesent tincidunt mi est, vitae rhoncus metus convallis ac.
+      </p>
+    </article>
+
+    <script type="module">
+      import { showChart } from "./app.ts";
+      showChart("graph1", "Number of widgets per month", [
+        { label: "Jan", value: 84 },
+        { label: "Feb", value: 69 },
+        { label: "Mar", value: 119 },
+        { label: "Apr", value: 128 },
+        { label: "May", value: 201 },
+        { label: "Jun", value: 180 },
+        { label: "Jul", value: 234 },
+      ]);
+    </script>
+  </body>
+</html>

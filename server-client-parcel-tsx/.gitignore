@@ -1,0 +1,7 @@
+dist
+dist-server
+node_modules
+.parcel-cache
+.test-run
+*.log
+npm-debug.log*

@@ -1,0 +1,38 @@
+{
+  "name": "sample",
+  "private": true,
+  "type": "module",
+  "prettier": {},
+  "scripts": {
+    "clean": "rimraf dist .test-run",
+    "start": "node dist-server/server",
+    "dev": "concurrently npm:dev:*",
+    "dev:server-tsc": "tsc -w -p tsconfig.server.json",
+    "dev:server-run": "node --watch dist-server/server",
+    "dev:client": "webpack serve --mode development",
+    "check": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.server.json",
+    "build": "npm run clean && npm run build:client && npm run build:server",
+    "build:client": "webpack --mode production --no-devtool",
+    "build:server": "tsc -p tsconfig.server.json",
+    "test": "webpack --config webpack.config.test.js",
+    "test-watch": "webpack --config webpack.config.test.js --watch"
+  },
+  "dependencies": {
+    "desk-frame": "next",
+    "@desk-framework/webcontext": "next",
+    "fastify": "^4.20.0",
+    "@fastify/static": "^6.10.2"
+  },
+  "devDependencies": {
+    "@desk-framework/test": "next",
+    "@types/node": "latest",
+    "rimraf": "5.0",
+    "concurrently": "^8.2.0",
+    "typescript": "5.1",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1",
+    "html-webpack-plugin": "^5.5.3",
+    "ts-loader": "^9.4.4"
+  }
+}

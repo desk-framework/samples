@@ -1,0 +1,20 @@
+{
+  "name": "my-desk-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "parcel serve src/index.html --open",
+    "build": "parcel build src/index.html --no-source-maps",
+    "test": "tsc -p tsconfig.test.json && node .test-run/app.test.js"
+  },
+  "dependencies": {
+    "desk-frame": "next",
+    "@desk-framework/webcontext": "next"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@desk-framework/test": "next",
+    "parcel": "2",
+    "typescript": "5.1"
+  }
+}

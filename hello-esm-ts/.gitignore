@@ -1,0 +1,6 @@
+lib
+/app/**/*.js
+/app/**/*.js.map
+node_modules
+*.log
+npm-debug.log*
