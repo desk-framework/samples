@@ -8,10 +8,7 @@ import CompanySelectorDialog from "./company-selector/CompanySelectorDialog";
 export class ContactDetailActivity extends ViewActivity {
   static ViewBody = body;
 
-  constructor() {
-    super();
-    this.path = "contact/:id";
-  }
+  path = "contact/:id";
 
   icon = contactIcon;
 

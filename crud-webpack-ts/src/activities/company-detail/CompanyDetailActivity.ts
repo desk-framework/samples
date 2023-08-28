@@ -8,10 +8,7 @@ import body from "./body";
 export class CompanyDetailActivity extends ViewActivity {
   static ViewBody = body;
 
-  constructor() {
-    super();
-    this.path = "company/:id";
-  }
+  path = "company/:id";
 
   icon = companyIcon;
 

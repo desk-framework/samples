@@ -11,10 +11,7 @@ import page from "./page";
 export class MainPageActivity extends PageViewActivity {
   static ViewBody = page;
 
-  constructor() {
-    super();
-    this.path = "/";
-  }
+  path = "/";
 
   masterDetailState = new MasterDetailViewState();
 
