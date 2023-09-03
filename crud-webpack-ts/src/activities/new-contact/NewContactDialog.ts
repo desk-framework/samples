@@ -6,42 +6,42 @@ import dialog from "./dialog";
 let contacts = app.services.observeService<ContactsService>("ContactsService");
 
 export class NewContactDialog extends DialogViewActivity {
-  static ViewBody = dialog;
+	static ViewBody = dialog;
 
-  constructor() {
-    super();
-    this.renderPlacement = {
-      mode: "dialog",
-      shade: UITheme.getModalDialogShadeOpacity(),
-      transform: { show: "fade-in-down", hide: "fade-out-up" },
-    };
-  }
+	constructor() {
+		super();
+		this.renderPlacement = {
+			mode: "dialog",
+			shade: UITheme.getModalDialogShadeOpacity(),
+			transform: { show: "fade-in-down", hide: "fade-out-up" },
+		};
+	}
 
-  formContext = new UIFormContext({
-    fullName: "",
-    email: "",
-  }).addRequired("fullName", "Please enter a name");
+	formContext = new UIFormContext({
+		fullName: "",
+		email: "",
+	}).addRequired("fullName", "Please enter a name");
 
-  onClose() {
-    this.unlink();
-  }
+	onClose() {
+		this.unlink();
+	}
 
-  onEscapeKeyPress() {
-    this.unlink();
-  }
+	onEscapeKeyPress() {
+		this.unlink();
+	}
 
-  onSave() {
-    this.formContext.validateAll();
-    if (this.formContext.errorCount) return;
+	onSave() {
+		this.formContext.validateAll();
+		if (this.formContext.errorCount) return;
 
-    let contact = Contact.create(this.formContext.serialize());
-    contacts.service?.saveContact(contact);
-    this.unlink();
-    app.navigate("/contact/" + contact.id);
-  }
+		let contact = Contact.create(this.formContext.serialize());
+		contacts.service?.saveContact(contact);
+		this.unlink();
+		app.navigate("/contact/" + contact.id);
+	}
 }
 
 // Enable Webpack hot-reload for this activity and its view
 if ((import.meta as any).webpackHot) {
-  app.hotReload((import.meta as any).webpackHot, NewContactDialog);
+	app.hotReload((import.meta as any).webpackHot, NewContactDialog);
 }

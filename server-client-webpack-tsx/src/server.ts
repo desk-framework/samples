@@ -13,10 +13,10 @@ fastify.register(staticRoot);
 // Run the server
 const port = +(process.env.PORT || 3000);
 try {
-  await fastify.listen({ port });
-  fastify.log.info("Starting server --- " + new Date());
-  fastify.log.info("Listening on port " + port);
+	await fastify.listen({ port });
+	fastify.log.info("Starting server --- " + new Date());
+	fastify.log.info("Listening on port " + port);
 } catch (err) {
-  fastify.log.error(err);
-  process.exit(1);
+	fastify.log.error(err);
+	process.exit(1);
 }

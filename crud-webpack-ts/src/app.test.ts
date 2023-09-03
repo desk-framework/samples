@@ -4,6 +4,6 @@ import "./integration.test";
 
 import { formatTestResults, runTestsAsync } from "@desk-framework/test";
 runTestsAsync().then((result) => {
-  console.log(formatTestResults(result));
-  if (result.failed) process.exit(1);
+	console.log(formatTestResults(result));
+	if (result.failed) process.exit(1);
 });

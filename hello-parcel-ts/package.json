@@ -1,20 +1,23 @@
 {
-  "name": "sample",
-  "private": true,
-  "type": "module",
-  "prettier": {},
-  "scripts": {
-    "clean": "rimraf dist .parcel-cache",
-    "dev": "parcel serve app/index.html --open",
-    "build": "npm run clean && parcel build app/index.html"
-  },
-  "dependencies": {
-    "desk-frame": "next",
-    "@desk-framework/webcontext": "next"
-  },
-  "devDependencies": {
-    "rimraf": "5.0",
-    "parcel": "2",
-    "typescript": "5.1"
-  }
+	"name": "sample",
+	"private": true,
+	"type": "module",
+	"prettier": {
+		"useTabs": true,
+		"trailingComma": "all"
+	},
+	"scripts": {
+		"clean": "rimraf dist .parcel-cache",
+		"dev": "parcel serve app/index.html --open",
+		"build": "npm run clean && parcel build app/index.html"
+	},
+	"dependencies": {
+		"desk-frame": "next",
+		"@desk-framework/webcontext": "next"
+	},
+	"devDependencies": {
+		"rimraf": "5.0",
+		"parcel": "2",
+		"typescript": "5.1"
+	}
 }

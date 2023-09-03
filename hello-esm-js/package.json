@@ -1,14 +1,17 @@
 {
-  "name": "sample",
-  "private": true,
-  "type": "module",
-  "prettier": {},
-  "scripts": {
-    "postinstall": "node copy-lib.js",
-    "start": "npx http-server app"
-  },
-  "dependencies": {
-    "desk-frame": "next",
-    "@desk-framework/webcontext": "next"
-  }
+	"name": "sample",
+	"private": true,
+	"type": "module",
+	"prettier": {
+		"useTabs": true,
+		"trailingComma": "all"
+	},
+	"scripts": {
+		"postinstall": "node copy-lib.js",
+		"start": "npx http-server app"
+	},
+	"dependencies": {
+		"desk-frame": "next",
+		"@desk-framework/webcontext": "next"
+	}
 }

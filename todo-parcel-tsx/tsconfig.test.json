@@ -1,8 +1,8 @@
 {
-  "extends": "./tsconfig.json",
-  "files": ["src/app.test.ts"],
-  "compilerOptions": {
-    "outDir": ".test-run",
-    "moduleResolution": "NodeNext"
-  }
+	"extends": "./tsconfig.json",
+	"files": ["src/app.test.ts"],
+	"compilerOptions": {
+		"outDir": ".test-run",
+		"moduleResolution": "NodeNext"
+	}
 }

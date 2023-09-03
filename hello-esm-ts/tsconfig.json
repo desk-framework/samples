@@ -1,14 +1,14 @@
 {
-  "compilerOptions": {
-    "rootDir": "app",
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUncheckedIndexedAccess": true,
-    "jsx": "react",
-    "jsxFactory": "JSX",
-    "module": "ES2020",
-    "target": "ES2020",
-    "moduleResolution": "Bundler",
-    "sourceMap": true
-  }
+	"compilerOptions": {
+		"rootDir": "app",
+		"strict": true,
+		"noUnusedLocals": true,
+		"noUncheckedIndexedAccess": true,
+		"jsx": "react",
+		"jsxFactory": "JSX",
+		"module": "ES2020",
+		"target": "ES2020",
+		"moduleResolution": "Bundler",
+		"sourceMap": true
+	}
 }

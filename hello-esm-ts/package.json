@@ -1,22 +1,25 @@
 {
-  "name": "sample",
-  "private": true,
-  "type": "module",
-  "prettier": {},
-  "scripts": {
-    "clean": "rimraf --glob app/lib 'app/**/*.js' 'app/**/*.js.map' && node copy-lib.js",
-    "postinstall": "node copy-lib.js",
-    "build": "tsc -p .",
-    "start": "npx http-server app",
-    "dev": "concurrently 'tsc -w --preserveWatchOutput -p .' npm:start"
-  },
-  "dependencies": {
-    "desk-frame": "next",
-    "@desk-framework/webcontext": "next"
-  },
-  "devDependencies": {
-    "typescript": "5.1",
-    "rimraf": "latest",
-    "concurrently": "^8.2.0"
-  }
+	"name": "sample",
+	"private": true,
+	"type": "module",
+	"prettier": {
+		"useTabs": true,
+		"trailingComma": "all"
+	},
+	"scripts": {
+		"clean": "rimraf --glob app/lib 'app/**/*.js' 'app/**/*.js.map' && node copy-lib.js",
+		"postinstall": "node copy-lib.js",
+		"build": "tsc -p .",
+		"start": "npx http-server app",
+		"dev": "concurrently 'tsc -w --preserveWatchOutput -p .' npm:start"
+	},
+	"dependencies": {
+		"desk-frame": "next",
+		"@desk-framework/webcontext": "next"
+	},
+	"devDependencies": {
+		"typescript": "5.1",
+		"rimraf": "latest",
+		"concurrently": "^8.2.0"
+	}
 }

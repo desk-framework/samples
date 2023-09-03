@@ -2,26 +2,26 @@ import { NavigationTarget, UITheme, ViewActivity } from "desk-frame";
 import modal from "./modal";
 
 export default class MenuModalActivity extends ViewActivity {
-  static ViewBody = modal;
+	static ViewBody = modal;
 
-  constructor() {
-    super();
-    this.renderPlacement = {
-      mode: "modal",
-      shade: UITheme.getModalDialogShadeOpacity(),
-      transform: {
-        show: "fade-in-right",
-        hide: "fade-out-left",
-      },
-    };
-  }
+	constructor() {
+		super();
+		this.renderPlacement = {
+			mode: "modal",
+			shade: UITheme.getModalDialogShadeOpacity(),
+			transform: {
+				show: "fade-in-right",
+				hide: "fade-out-left",
+			},
+		};
+	}
 
-  onCloseModal() {
-    this.unlink();
-  }
+	onCloseModal() {
+		this.unlink();
+	}
 
-  override async handleNavigateAsync(target: NavigationTarget) {
-    await super.handleNavigateAsync(target);
-    this.unlink();
-  }
+	override async handleNavigateAsync(target: NavigationTarget) {
+		await super.handleNavigateAsync(target);
+		this.unlink();
+	}
 }

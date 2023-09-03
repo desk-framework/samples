@@ -7,8 +7,8 @@ let button = new desk.UIPrimaryButton("Say hello");
 
 // step 2: add an event listener
 button.listen((e) => {
-  if (e.name === "Click")
-    desk.app.showAlertDialogAsync("Hello, world!", "You clicked?");
+	if (e.name === "Click")
+		desk.app.showAlertDialogAsync("Hello, world!", "You clicked?");
 });
 
 // step 3: render the button
