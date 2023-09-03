@@ -1,7 +1,13 @@
-import { StringConvertible, UILabel, UIRow, View, ViewClass } from "desk-frame";
+import {
+  StringConvertible,
+  UILabel,
+  UIRow,
+  ViewClass,
+  ViewComposite,
+} from "desk-frame";
 
-export default View.compose(
-  (p: { label: StringConvertible }, content: ViewClass) =>
+export default ViewComposite.define<{ label: StringConvertible }, [ViewClass]>(
+  (p, content) =>
     UIRow.with(
       { padding: { y: 12 } },
       UILabel.with({

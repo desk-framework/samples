@@ -6,11 +6,11 @@ import {
   UILabel,
   UIRow,
   UITextField,
-  View,
+  ViewComposite,
   bound,
 } from "desk-frame";
 
-export default View.compose(
+export default ViewComposite.define(
   (p: {
     formField: string;
     label: StringConvertible;
@@ -39,9 +39,9 @@ export default View.compose(
       })
     );
   },
-  {
+  class extends ViewComposite {
     onClick() {
       this.findViewContent(UITextField)[0]?.requestFocus();
-    },
+    }
   }
 );
