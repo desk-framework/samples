@@ -1,5 +1,5 @@
-import { app, UIPrimaryButton } from "desk-frame";
-import { useWebContext } from "@desk-framework/webcontext";
+import { app, UIPrimaryButton } from "@desk-framework/frame-core";
+import { useWebContext } from "@desk-framework/frame-web";
 
 // Note: this is a MINIMAL example, check other folders for full app architecture
 

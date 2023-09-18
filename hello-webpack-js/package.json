@@ -12,8 +12,8 @@
 		"build": "webpack --mode production --no-devtool"
 	},
 	"dependencies": {
-		"@desk-framework/webcontext": "next",
-		"desk-frame": "next"
+		"@desk-framework/frame-core": "next",
+		"@desk-framework/frame-web": "next"
 	},
 	"devDependencies": {
 		"html-webpack-plugin": "^5.5.3",

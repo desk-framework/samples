@@ -1,6 +1,6 @@
 import * as fs from "fs";
 
-const SRC_PATH = "./node_modules/@desk-framework/webcontext/lib/";
+const SRC_PATH = "./node_modules/@desk-framework/frame-web/lib/";
 const DEST_PATH = "./app/lib/";
 const BASE_NAME = "desk-framework-web.es2015.iife.min";
 
