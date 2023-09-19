@@ -4,7 +4,6 @@ import {
 	UIColor,
 	UIColumn,
 	UILabel,
-	UIRow,
 	UITextField,
 	ViewComposite,
 	bound,
@@ -19,11 +18,8 @@ export default ViewComposite.define(
 		requestFocus?: boolean;
 	}) => {
 		return UIColumn.with(
-			{ spacing: 0 },
-			UIRow.with(
-				{ padding: { y: 4 } },
-				UILabel.withText(p.label, { bold: true }),
-			),
+			{ spacing: 0, align: "start", padding: { y: 4 } },
+			UILabel.withText(p.label, { bold: true }),
 			UITextField.with({
 				type: p.type,
 				multiline: p.multiline,

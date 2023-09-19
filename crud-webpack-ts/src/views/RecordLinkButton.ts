@@ -8,6 +8,7 @@ import {
 export default UIButton.with({
 	chevron: "next",
 	chevronSize: 24,
+	chevronColor: UIColor["@text"].alpha(0.5),
 	buttonStyle: UIPlainButtonStyle.extend(
 		{
 			textAlign: "start",

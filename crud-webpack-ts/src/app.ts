@@ -5,6 +5,8 @@ import { ContactsService } from "./services/ContactsService";
 useWebContext((options) => {
 	options.largeBreakpoint = 850;
 	options.theme.rowSpacing = 16;
+	options.theme.colors.set("background", "#111");
+	options.theme.lightTextColor = "#eee";
 });
 
 if (process.env.NODE_ENV !== "production") {
