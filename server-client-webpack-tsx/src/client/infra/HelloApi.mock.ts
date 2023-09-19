@@ -1,8 +1,10 @@
-import { ManagedObject } from "desk-frame";
+import { Service } from "@desk-framework/frame-core";
 import { Hello } from "../../shared/Hello.js";
 import { HelloAPI, HelloResponseError } from "./HelloApi.js";
 
-export class HelloAPI_Mock extends ManagedObject implements HelloAPI {
+export class HelloAPI_Mock extends Service implements HelloAPI {
+	readonly id = "Infra.Hello";
+
 	mockFail?: boolean;
 
 	async fetchHello(): Promise<Hello> {

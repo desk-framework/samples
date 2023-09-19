@@ -1,9 +1,10 @@
-import { Binding, app, strf, useWebContext } from "@desk-framework/webcontext";
+import { Binding, app, strf, useWebContext } from "@desk-framework/frame-web";
 import { MainPageActivity } from "./activities/main-page/MainPageActivity";
 import { ContactsService } from "./services/ContactsService";
 
 useWebContext((options) => {
 	options.largeBreakpoint = 850;
+	options.theme.rowSpacing = 16;
 });
 
 if (process.env.NODE_ENV !== "production") {
@@ -15,4 +16,4 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 app.addActivity(new MainPageActivity());
-app.addService("ContactsService", new ContactsService());
+app.addService(new ContactsService());

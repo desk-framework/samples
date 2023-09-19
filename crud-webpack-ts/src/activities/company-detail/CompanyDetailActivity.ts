@@ -1,4 +1,9 @@
-import { ActivationPath, UIFormContext, ViewActivity, app } from "desk-frame";
+import {
+	ActivationPath,
+	UIFormContext,
+	ViewActivity,
+	app,
+} from "@desk-framework/frame-core";
 import { companyIcon } from "~/icons";
 import { Company } from "~/models/Company";
 import { Contact } from "~/models/Contact";
@@ -63,6 +68,10 @@ export class CompanyDetailActivity extends ViewActivity {
 	onStartEdit() {
 		this.initForm();
 		this.mode = "edit";
+	}
+
+	onCancelEdit() {
+		this.mode = "view";
 	}
 
 	onSaveCompany() {

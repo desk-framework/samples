@@ -14,11 +14,11 @@
 		"test": "tsc -p tsconfig.test.json && node .test-run/app.test.js"
 	},
 	"dependencies": {
-		"desk-frame": "next",
-		"@desk-framework/webcontext": "next"
+		"@desk-framework/frame-core": "next",
+		"@desk-framework/frame-web": "next"
 	},
 	"devDependencies": {
-		"@desk-framework/test": "next",
+		"@desk-framework/frame-test": "next",
 		"@types/node": "latest",
 		"parcel": "2",
 		"typescript": "5.1",

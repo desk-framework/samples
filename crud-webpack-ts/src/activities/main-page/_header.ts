@@ -1,13 +1,12 @@
 import {
-	UIBorderlessButton,
 	UIConditional,
-	UIHeading2,
-	UIIcon,
+	UIHeading2Label,
 	UIIconButton,
+	UIPlainButton,
 	UIRow,
 	UISpacer,
 	bound,
-} from "desk-frame";
+} from "@desk-framework/frame-core";
 
 export default UIRow.with(
 	{ padding: 16, spacing: 0 },
@@ -20,7 +19,7 @@ export default UIRow.with(
 		},
 		UIRow.with(
 			UIIconButton.with({
-				icon: UIIcon.ExpandLeft,
+				icon: "@chevronBack",
 				iconSize: 24,
 				onClick: "GoBack",
 			}),
@@ -37,7 +36,7 @@ export default UIRow.with(
 		},
 		UIRow.with(
 			UIIconButton.with({
-				icon: UIIcon.Menu,
+				icon: "@menu",
 				iconSize: 24,
 				onClick: "ShowMenu",
 				accessibleLabel: "Main menu",
@@ -46,7 +45,7 @@ export default UIRow.with(
 		),
 	),
 
-	UIHeading2.with({
+	UIHeading2Label.with({
 		text: bound
 			.boolean("viewport.narrow")
 			.and("masterDetailState.detailActivity.title")
@@ -59,8 +58,8 @@ export default UIRow.with(
 	UISpacer,
 
 	UIRow.with(
-		UIBorderlessButton.with({
-			icon: UIIcon.Plus,
+		UIPlainButton.with({
+			icon: "@plus",
 			label: bound("viewport.narrow").select("", "New contact"),
 			accessibleLabel: "New contact",
 			onClick: "ShowNewContact",

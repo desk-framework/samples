@@ -2,7 +2,7 @@
 import "./services/ContactsService.test";
 import "./integration.test";
 
-import { formatTestResults, runTestsAsync } from "@desk-framework/test";
+import { formatTestResults, runTestsAsync } from "@desk-framework/frame-test";
 runTestsAsync().then((result) => {
 	console.log(formatTestResults(result));
 	if (result.failed) process.exit(1);

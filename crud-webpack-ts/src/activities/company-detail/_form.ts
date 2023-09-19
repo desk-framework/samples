@@ -1,4 +1,4 @@
-import { UIForm, bound } from "desk-frame";
+import { UIForm, bound } from "@desk-framework/frame-core";
 import LabeledTextField from "~/views/LabeledTextField";
 
 export default UIForm.with(

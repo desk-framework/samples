@@ -1,4 +1,4 @@
-import { ManagedObject } from "desk-frame";
+import { Service } from "@desk-framework/frame-core";
 import { Company } from "~/models/Company";
 import { Contact } from "~/models/Contact";
 
@@ -33,7 +33,9 @@ function _persist() {
 	);
 }
 
-export class ContactsService extends ManagedObject {
+export class ContactsService extends Service {
+	readonly id = "ContactsService";
+
 	getAllContacts() {
 		return _contactData.map((data) => this._createContact(data));
 	}

@@ -1,17 +1,17 @@
-import { JSX, UIIcon, bound } from "desk-frame";
+import { JSX, bound } from "@desk-framework/frame-core";
 import TodoItem from "./TodoItem.js";
 import _header from "./_header.js";
+import { TodoTextField } from "./styles.js";
 
 export default (
 	<scrollcontainer padding={{ y: 32, x: 8 }}>
 		<cell
-			dimensions={{ width: "100%", maxWidth: 640 }}
+			cellStyle={{ width: "100%", maxWidth: 640, padding: 2 }}
 			position={{ gravity: "center" }}
 			layout={{ distribution: "start" }}
 		>
 			{/* Header row with app name and button */}
 			{_header}
-			<separator margin={8} />
 
 			{/* List of items using composite view */}
 			<list items={bound.list("items")}>
@@ -20,20 +20,16 @@ export default (
 
 			{/* Input field and button */}
 			<row height={48}>
-				<label icon={UIIcon.ExpandRight} iconSize={22} />
-				<borderlesstextfield
+				<label icon="@chevronNext" iconSize={22} />
+				<textfield
 					formField="title"
-					textStyle={{ fontSize: 18 }}
-					requestFocus
+					textFieldStyle={TodoTextField}
 					onEnterKeyPress="AddItem"
+					requestFocus
 				>
 					What do you want to do?
-				</borderlesstextfield>
-				<iconbutton
-					icon={UIIcon.Plus}
-					onClick="AddItem"
-					accessibleLabel="Add"
-				/>
+				</textfield>
+				<iconbutton icon="@plus" onClick="AddItem" accessibleLabel="Add" />
 			</row>
 		</cell>
 	</scrollcontainer>

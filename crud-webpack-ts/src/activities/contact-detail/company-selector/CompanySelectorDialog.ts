@@ -1,11 +1,11 @@
 import {
 	DialogViewActivity,
-	UIComponentEvent,
 	UIList,
 	UITextField,
 	UITheme,
+	ViewEvent,
 	app,
-} from "desk-frame";
+} from "@desk-framework/frame-core";
 import { Company } from "~/models/Company";
 import type { ContactsService } from "~/services/ContactsService";
 import dialog from "./dialog";
@@ -22,6 +22,7 @@ export default class CompanySelectorDialog extends DialogViewActivity {
 		this.renderPlacement = {
 			mode: "modal",
 			shade: UITheme.getModalDialogShadeOpacity(),
+			transform: { show: "@fade-in-up", hide: "@fade-out-down" },
 		};
 	}
 
@@ -55,7 +56,7 @@ export default class CompanySelectorDialog extends DialogViewActivity {
 		}
 	}
 
-	onNameFieldUpdated(e: UIComponentEvent<UITextField>) {
+	onNameFieldUpdated(e: ViewEvent<UITextField>) {
 		let value = (this.companyName = e.source.value);
 		let lcValue = value.toLowerCase();
 		this.filteredCompanies = this.allCompanies.filter(

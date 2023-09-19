@@ -1,11 +1,12 @@
-import { JSX } from "desk-frame";
+import { JSX } from "@desk-framework/frame-core";
 
 export default (
   <cell>
     <h2>Hello from Electron!</h2>
-    <centerrow>
+    <spacer height={16} />
+    <row align="center">
       <primarybutton onClick="HelloClick">Say hello</primarybutton>
-      <outlinebutton onClick="CloseWindow">Close</outlinebutton>
-    </centerrow>
+      <button onClick="CloseWindow">Close</button>
+    </row>
   </cell>
 );

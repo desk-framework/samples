@@ -2,14 +2,14 @@ import {
 	UIColumn,
 	UIConditional,
 	UILabel,
-	UILinkButton,
 	UIList,
 	UIRow,
 	UISeparator,
 	bound,
-} from "desk-frame";
-import DataRow from "~/views/DataRow";
+} from "@desk-framework/frame-core";
 import { contactIcon } from "~/icons";
+import DataRow from "~/views/DataRow";
+import RecordLinkButton from "~/views/RecordLinkButton";
 
 export default UIColumn.with(
 	{ spacing: 0 },
@@ -30,10 +30,10 @@ export default UIColumn.with(
 		{ label: "Notes" },
 		UILabel.with({
 			text: bound.string("company.notes").else("-"),
-			textStyle: {
+			labelStyle: {
 				lineBreakMode: "pre-wrap",
+				minHeight: 100,
 			},
-			dimensions: { minHeight: 100 },
 		}),
 	),
 	UISeparator,
@@ -43,17 +43,16 @@ export default UIColumn.with(
 			{ items: bound.list("contacts") },
 			UIRow.with(
 				{ padding: 4 },
-				UILinkButton.with({
+				RecordLinkButton.with({
 					label: bound.string("item.fullName"),
-					decoration: { padding: { y: 4, x: 0 } },
-					textStyle: { lineBreakMode: "ellipsis" },
 					icon: contactIcon,
-					shrinkwrap: false,
+					iconSize: 20,
+					iconMargin: 8,
 					navigateTo: bound.strf("/contact/%s", "item.id"),
 				}),
 			),
 			UIColumn.with({
-				dimensions: { grow: 1, shrink: 1 },
+				width: "100%",
 				layout: { clip: true },
 			}),
 		),

@@ -1,4 +1,8 @@
-import { DialogViewActivity, UIFormContext, app } from "desk-frame";
+import {
+	DialogViewActivity,
+	UIFormContext,
+	app,
+} from "@desk-framework/frame-core";
 import dialog from "./dialog";
 import { GameState } from "~/models/GameState";
 

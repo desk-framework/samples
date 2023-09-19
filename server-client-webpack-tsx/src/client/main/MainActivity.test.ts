@@ -1,7 +1,12 @@
-import { app } from "desk-frame";
+import { app } from "@desk-framework/frame-core";
 import { HelloAPI_Mock } from "../infra/HelloApi.mock.js";
 import { MainActivity } from "./MainActivity.js";
-import { describe, expect, test, useTestContext } from "@desk-framework/test";
+import {
+	describe,
+	expect,
+	test,
+	useTestContext,
+} from "@desk-framework/frame-test";
 
 describe("MainActivity", (ctx) => {
 	let activity: MainActivity;
@@ -13,7 +18,7 @@ describe("MainActivity", (ctx) => {
 		});
 
 		// Create the mock API and add it as a service
-		app.addService("Infra.Hello", new HelloAPI_Mock());
+		app.addService(new HelloAPI_Mock());
 
 		// Create an activity from scratch and activate it immediately
 		activity = new MainActivity();

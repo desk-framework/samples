@@ -1,4 +1,4 @@
-import { ManagedObject, ViewActivity } from "desk-frame";
+import { ManagedObject, ViewActivity } from "@desk-framework/frame-core";
 
 export class MasterDetailViewState extends ManagedObject {
 	masterActivity?: ViewActivity = undefined;

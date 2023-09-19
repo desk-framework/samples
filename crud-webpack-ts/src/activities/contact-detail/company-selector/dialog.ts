@@ -1,98 +1,92 @@
 import {
+	UIButton,
 	UICell,
+	UICellStyle,
 	UIColor,
 	UIColumn,
-	UIExpandedLabel,
+	UILabel,
 	UIList,
-	UIOutlineButton,
 	UIPrimaryButton,
+	UIPrimaryButtonStyle,
 	UIRow,
 	UIScrollContainer,
-	UISelectionController,
-	UIStyle,
+	UISeparator,
 	UITextField,
 	bound,
-} from "desk-frame";
+} from "@desk-framework/frame-core";
 import { companyIcon } from "~/icons";
+import PopupDialogCell from "~/views/PopupDialogCell";
 
-const _listCellStyle = UIStyle.Cell.extend(
-	{ decoration: { borderRadius: 8, css: { cursor: "pointer" } } },
-	{
-		selected: {
-			decoration: {
-				background: UIColor.Primary,
-				textColor: UIColor.Primary.text(),
-			},
-		},
-	},
-);
+const ListCellStyle = UICellStyle.extend({
+	borderRadius: 2,
+	padding: { x: 8, y: 4 },
+	css: { cursor: "pointer" },
+});
+const SelectedListCellStyle = ListCellStyle.extend({
+	background: UIColor["@primary"],
+	textColor: UIColor["@primary"].text(),
+});
 
-export default UICell.with(
-	{
-		background: UIColor.Background,
-		padding: { x: 16, y: 20 },
-		borderRadius: 16,
-		dimensions: { grow: 0, width: "100%", maxWidth: 540 },
-		position: { gravity: "center" },
-		onEscapeKeyPress: "CloseModal",
-	},
+export default PopupDialogCell.with(
 	UIColumn.with(
 		{ spacing: 8 },
 		UITextField.with({
 			placeholder: "Enter company name",
-			dimensions: { width: "100%" },
+			width: "100%",
 			requestFocus: true,
 			value: bound.string("companyName"),
 			onInput: "NameFieldUpdated",
 			onEnterKeyPress: "Confirm",
 			onArrowDownKeyPress: "FocusList",
 		}),
+		UISeparator,
 		UICell.with(
 			{
-				dimensions: { height: 200 },
-				distribution: "start",
+				cellStyle: { height: 200 },
+				layout: { distribution: "start" },
 			},
 			UIScrollContainer.with(
 				{ position: { gravity: "cover" } },
-				UISelectionController.with(
-					UIList.with(
+				UIList.with(
+					{
+						items: bound.list("filteredCompanies"),
+						allowKeyboardFocus: true,
+					},
+					UICell.with(
 						{
-							items: bound.list("filteredCompanies"),
-							allowKeyboardFocus: true,
+							cellStyle: bound("selectedCompany")
+								.equals("item")
+								.select(SelectedListCellStyle, ListCellStyle),
+							allowFocus: true,
+							onFocusIn: "+SelectListItem",
+							onArrowDownKeyPress: "FocusNext",
+							onArrowUpKeyPress: "FocusPrevious",
+							onEnterKeyPress: "Confirm",
 						},
-						UICell.with(
-							{
-								padding: { x: 12, y: 4 },
-								style: _listCellStyle,
-								allowFocus: true,
-								onFocusIn: "Select",
-								onSelect: "+SelectListItem",
-								onArrowDownKeyPress: "FocusNext",
-								onArrowUpKeyPress: "FocusPrevious",
-								onEnterKeyPress: "Confirm",
-							},
-							UIRow.with(
-								UIExpandedLabel.with({
-									text: bound.string("item.name"),
-									icon: companyIcon,
-								}),
-							),
+						UIRow.with(
+							UILabel.with({
+								text: bound.string("item.name"),
+								icon: companyIcon,
+								iconSize: 20,
+								iconMargin: 16,
+								labelStyle: { grow: 1 },
+							}),
 						),
 					),
 				),
 			),
 		),
 		UIRow.with(
-			UIOutlineButton.with({
+			UIButton.with({
 				label: "Cancel",
-				shrinkwrap: false,
 				onClick: "CloseModal",
+				buttonStyle: { grow: 1 },
 			}),
 			UIPrimaryButton.with({
-				shrinkwrap: false,
 				label: bound("selectedCompany.id").select("Select", "Confirm"),
 				disabled: bound("companyName").not(),
 				onClick: "Confirm",
+				buttonStyle: UIPrimaryButtonStyle.override({ grow: 1 }),
 			}),
 		),
 	),

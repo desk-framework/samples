@@ -1,4 +1,4 @@
-import { useWebContext } from "@desk-framework/webcontext";
+import { useWebContext } from "@desk-framework/frame-web";
 import { GameScreen } from "./activities/game/GameScreen";
 import colors from "./styles/colors";
 
@@ -10,9 +10,8 @@ const app = useWebContext((options) => {
 	options.controlTextStyle = {
 		fontFamily: '"Patrick Hand", cursive',
 	};
-	options.theme.colors = {
-		...options.theme.colors,
-		...colors,
-	};
+	for (const [name, color] of colors) {
+		options.theme.colors.set(name, color);
+	}
 });
 app.addActivity(new GameScreen(), true);

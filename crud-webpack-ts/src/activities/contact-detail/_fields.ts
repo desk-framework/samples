@@ -1,14 +1,12 @@
 import {
 	UIColumn,
 	UIConditional,
-	UIIcon,
 	UILabel,
-	UILinkButton,
-	UIRow,
 	UISeparator,
 	bound,
-} from "desk-frame";
+} from "@desk-framework/frame-core";
 import DataRow from "~/views/DataRow";
+import RecordLinkButton from "~/views/RecordLinkButton";
 
 export default UIColumn.with(
 	{ spacing: 0 },
@@ -27,19 +25,16 @@ export default UIColumn.with(
 	),
 	DataRow.with(
 		{ label: "Company" },
-		UIRow.with(
-			{ spacing: 0, dimensions: { grow: 1 } },
+		UIColumn.with(
+			{ width: "100%", align: "start" },
 			UILabel.with({
 				hidden: bound.boolean("contact.company"),
 				text: "-",
 			}),
-			UILinkButton.with({
+			RecordLinkButton.with({
+				width: "100%",
 				hidden: bound.not("contact.company"),
 				label: bound.string("contact.company.name"),
-				decoration: { padding: { y: 4, x: 0 } },
-				icon: UIIcon.ExpandRight,
-				iconAfter: true,
-				shrinkwrap: false,
 				navigateTo: bound.strf("/company/%s", "contact.company.id"),
 			}),
 		),
@@ -63,10 +58,10 @@ export default UIColumn.with(
 		{ label: "Notes" },
 		UILabel.with({
 			text: bound.string("contact.notes").else("-"),
-			textStyle: {
+			labelStyle: {
 				lineBreakMode: "pre-wrap",
+				minHeight: 100,
 			},
-			dimensions: { minHeight: 100 },
 		}),
 	),
 );

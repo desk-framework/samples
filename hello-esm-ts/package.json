@@ -14,8 +14,8 @@
 		"dev": "concurrently 'tsc -w --preserveWatchOutput -p .' npm:start"
 	},
 	"dependencies": {
-		"desk-frame": "next",
-		"@desk-framework/webcontext": "next"
+		"@desk-framework/frame-core": "next",
+		"@desk-framework/frame-web": "next"
 	},
 	"devDependencies": {
 		"typescript": "5.1",

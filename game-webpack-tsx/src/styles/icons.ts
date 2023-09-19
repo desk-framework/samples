@@ -1,12 +1,12 @@
-import { UIIcon } from "desk-frame";
+import { UIIconResource } from "@desk-framework/frame-core";
 
 export default {
-	settings: new UIIcon("⚙️"),
-	pause: new UIIcon("⏸"),
-	resume: new UIIcon("▶"),
-	continue: new UIIcon("➡"),
-	correct: new UIIcon("🙂"),
-	incorrect: new UIIcon("🙁"),
-	paused: new UIIcon("⏳"),
-	timeUp: new UIIcon("😵"),
+	settings: new UIIconResource("⚙️"),
+	pause: new UIIconResource("⏸"),
+	resume: new UIIconResource("▶"),
+	continue: new UIIconResource("➡"),
+	correct: new UIIconResource("🙂"),
+	incorrect: new UIIconResource("🙁"),
+	paused: new UIIconResource("⏳"),
+	timeUp: new UIIconResource("😵"),
 };

@@ -1,4 +1,9 @@
-import { ActivationPath, UIFormContext, ViewActivity, app } from "desk-frame";
+import {
+	ActivationPath,
+	UIFormContext,
+	ViewActivity,
+	app,
+} from "@desk-framework/frame-core";
 import { contactIcon } from "~/icons";
 import { Contact } from "~/models/Contact";
 import { ContactsService } from "~/services/ContactsService";
@@ -66,6 +71,10 @@ export class ContactDetailActivity extends ViewActivity {
 		this.mode = "edit";
 	}
 
+	onCancelEdit() {
+		this.mode = "view";
+	}
+
 	onClearCompany() {
 		this.contact!.company = undefined;
 	}
@@ -93,8 +102,13 @@ export class ContactDetailActivity extends ViewActivity {
 		}
 	}
 
-	onDeleteContact() {
+	async onDeleteContact() {
 		if (this.contact) {
+			let confirm = await app.showConfirmDialogAsync([
+				"Delete contact?",
+				"This action cannot be undone.",
+			]);
+			if (!confirm) return;
 			this.contactsServiceObserver.service!.deleteContact(this.contact);
 			app.navigate(":back");
 		}

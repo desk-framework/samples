@@ -1,7 +1,12 @@
-import { describe, expect, test, useTestContext } from "@desk-framework/test";
+import {
+	describe,
+	expect,
+	test,
+	useTestContext,
+} from "@desk-framework/frame-test";
 import { MainPageActivity } from "./activities/main-page/MainPageActivity";
 import { ContactsService } from "./services/ContactsService";
-import { app } from "desk-frame";
+import { app } from "@desk-framework/frame-core";
 
 describe("Integration", (scope) => {
 	scope.beforeEach(() => {
@@ -10,7 +15,7 @@ describe("Integration", (scope) => {
 			options.renderFrequency = 5;
 		})
 			.addActivity(new MainPageActivity())
-			.addService("ContactsService", new ContactsService());
+			.addService(new ContactsService());
 	});
 
 	test("Create contact, set company, delete contact and company", async (t) => {

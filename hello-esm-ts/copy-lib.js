@@ -1,6 +1,6 @@
 import * as fs from "fs";
 
-const SRC_PATH = "./node_modules/@desk-framework/webcontext/lib/";
+const SRC_PATH = "./node_modules/@desk-framework/frame-web/lib/";
 const DEST_PATH = "./app/lib/";
 const BASE_NAME = "desk-framework-web.es2020.esm.min";
 
@@ -23,5 +23,5 @@ fs.copyFileSync(
 console.log(`Writing ${DEST_PATH}.d.ts`);
 fs.writeFileSync(
 	DEST_PATH + BASE_NAME + ".d.ts",
-	`export * from "@desk-framework/webcontext"`,
+	`export * from "@desk-framework/frame-web"`,
 );

@@ -1,4 +1,9 @@
-import { DialogViewActivity, UIFormContext, UITheme, app } from "desk-frame";
+import {
+	DialogViewActivity,
+	UIFormContext,
+	UITheme,
+	app,
+} from "@desk-framework/frame-core";
 import { Contact } from "~/models/Contact";
 import { ContactsService } from "~/services/ContactsService";
 import dialog from "./dialog";
@@ -13,7 +18,7 @@ export class NewContactDialog extends DialogViewActivity {
 		this.renderPlacement = {
 			mode: "dialog",
 			shade: UITheme.getModalDialogShadeOpacity(),
-			transform: { show: "fade-in-down", hide: "fade-out-up" },
+			transform: { show: "@fade-in-down", hide: "@fade-out-up" },
 		};
 	}
 

@@ -13,8 +13,8 @@
 		"build": "webpack --mode production --no-devtool"
 	},
 	"dependencies": {
-		"desk-frame": "next",
-		"@desk-framework/webcontext": "next"
+		"@desk-framework/frame-core": "next",
+		"@desk-framework/frame-web": "next"
 	},
 	"devDependencies": {
 		"rimraf": "5.0",

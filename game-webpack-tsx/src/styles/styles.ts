@@ -1,40 +1,60 @@
-import { UIColor, UIStyle } from "desk-frame";
+import {
+	UICellStyle,
+	UIColor,
+	UILabelStyle,
+	UIPlainButtonStyle,
+	UITextFieldStyle,
+	UITheme,
+} from "@desk-framework/frame-core";
 
 export default {
-	gameIconButton: UIStyle.BorderlessButton.extend({
-		dimensions: { minWidth: "2em" },
+	GameIconButton: UIPlainButtonStyle.extend({
+		minWidth: "2em",
 	}),
-	timerLabel: UIStyle.Label.extend({
-		textStyle: { align: "center" },
-		dimensions: { minWidth: "5em" },
+	TimerLabel: UILabelStyle.extend({
+		textAlign: "center",
+		minWidth: "5em",
 	}),
-	sumText: UIStyle.Label.extend({
-		textStyle: { fontSize: "3em" },
+	SumText: UILabelStyle.extend({
+		fontSize: "3em",
 	}),
-	operandText: UIStyle.Label.extend({
-		textStyle: { fontSize: "3.5em", align: "center" },
-		dimensions: { minWidth: "2em" },
+	OperandText: UILabelStyle.extend({
+		fontSize: "3.5em",
+		textAlign: "center",
+		minWidth: "2em",
 	}),
-	answerText: UIStyle.Label.extend({
-		textStyle: { fontSize: "3.5em", align: "center" },
-		dimensions: { minWidth: "3em" },
+	AnswerText: UILabelStyle.extend({
+		fontSize: "3.5em",
+		textAlign: "center",
+		minWidth: "3em",
 	}),
-	answerField: UIStyle.BorderlessTextField.extend({
-		textStyle: { fontSize: "3.5em", align: "center" },
-		decoration: { borderColor: UIColor.Text, borderThickness: { bottom: 2 } },
-		dimensions: { maxWidth: "3em" },
-	}),
-	settingsDialog: UIStyle.Cell.extend({
-		dimensions: { width: "100%", maxWidth: 400 },
-		position: { gravity: "center" },
-		decoration: {
-			background: UIColor.Background,
-			dropShadow: 0.5,
-			padding: 32,
+	AnswerField: UITextFieldStyle.extend(
+		{
+			fontSize: "3.5em",
+			textAlign: "center",
+			background: UIColor["@clear"],
+			borderColor: UIColor["@text"],
+			borderThickness: { bottom: 2 },
+			borderRadius: 0,
+			maxWidth: "3em",
+			css: { outline: "none" },
 		},
+		{
+			[UITheme.STATE_HOVERED]: true,
+			[UITheme.STATE_DISABLED]: false,
+			[UITheme.STATE_READONLY]: false,
+			borderColor: UIColor["@text"],
+		},
+	),
+	SettingsDialog: UICellStyle.extend({
+		width: "100%",
+		maxWidth: 400,
+		background: UIColor["@background"],
+		dropShadow: 0.5,
+		padding: 32,
 	}),
-	settingsNumberInputField: UIStyle.TextField.extend({
-		textStyle: { align: "end" },
-		dimensions: { maxWidth: "4em" },
+	SettingsNumberInputField: UITextFieldStyle.extend({
+		textAlign: "end",
+		maxWidth: "4em",
 	}),
 };

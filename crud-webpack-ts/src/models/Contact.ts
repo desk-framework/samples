@@ -1,4 +1,4 @@
-import { ManagedRecord } from "desk-frame";
+import { ManagedRecord } from "@desk-framework/frame-core";
 import { Company } from "./Company";
 
 export class Contact extends ManagedRecord {

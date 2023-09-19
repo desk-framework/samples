@@ -23,6 +23,10 @@ The following examples are included in this repository. Check the readme file in
     - **Bundler:** Webpack
     - **Import:** ES Module (Webpack)
     - **Language:** JavaScript
+  - [TypeScript module](./hello-esm-ts)
+    - **Bundler:** none (only postinstall file copy)
+    - **Import:** ES Module
+    - **Language:** TypeScript
   - [TypeScript + Parcel](./hello-parcel-ts)
     - **Bundler:** Parcel
     - **Import:** ES Module (Parcel)

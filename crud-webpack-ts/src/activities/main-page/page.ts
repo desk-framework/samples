@@ -7,27 +7,33 @@ import {
 	UIScrollContainer,
 	UIViewRenderer,
 	bound,
-} from "desk-frame";
+} from "@desk-framework/frame-core";
 import _header from "./_header";
 
 export default UICell.with(
 	{
-		distribution: "start",
-		dimensions: { shrink: 1 },
+		layout: { distribution: "start" },
+		cellStyle: { shrink: 1 },
 	},
 	_header,
 
 	UICell.with(
-		{ layout: { axis: "horizontal" }, dimensions: { shrink: 1 } },
-
+		{
+			layout: { axis: "horizontal" },
+			cellStyle: { shrink: 1 },
+		},
 		UIConditional.with(
 			{ state: bound.not("viewport.narrow") },
 			UICell.with(
 				{
-					dimensions: { width: "30vw", maxWidth: 340, grow: 0 },
-					borderColor: UIColor.Separator.alpha(0.5),
-					borderThickness: { end: 1 },
-					distribution: "start",
+					cellStyle: {
+						width: "30vw",
+						maxWidth: 340,
+						grow: 0,
+						borderColor: UIColor["@separator"].alpha(0.5),
+						borderThickness: { end: 1 },
+					},
+					layout: { distribution: "start" },
 				},
 				UIScrollContainer.with(
 					{ padding: 8 },
@@ -43,7 +49,7 @@ export default UICell.with(
 				padding: bound("viewport.narrow").select(0, { x: 16 }),
 			},
 			UIAnimationController.with(
-				{ showAnimation: "fade-in-right" },
+				{ showAnimation: "@fade-in-right" },
 				UIConditional.with(
 					{
 						state: bound
@@ -56,7 +62,7 @@ export default UICell.with(
 				),
 			),
 			UIAnimationController.with(
-				{ showAnimation: "fade-in-left" },
+				{ showAnimation: "@fade-in-left" },
 				UIViewRenderer.with({
 					view: bound("masterDetailState.detailActivity"),
 				}),
@@ -71,7 +77,7 @@ export default UICell.with(
 				UICell.with(
 					{ margin: { bottom: "30vh" } },
 					UILabel.withText("No contact selected", {
-						color: UIColor.Text.alpha(0.35),
+						textColor: UIColor["@text"].alpha(0.35),
 						fontSize: 24,
 					}),
 				),

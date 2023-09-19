@@ -12,8 +12,8 @@
 		"build": "npm run clean && parcel build src/index.html --no-source-maps"
 	},
 	"dependencies": {
-		"desk-frame": "next",
-		"@desk-framework/webcontext": "next"
+		"@desk-framework/frame-core": "next",
+		"@desk-framework/frame-web": "next"
 	},
 	"devDependencies": {
 		"rimraf": "5.0",

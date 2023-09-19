@@ -1,4 +1,9 @@
-import { ManagedList, NavigationTarget, ViewActivity, app } from "desk-frame";
+import {
+	ManagedList,
+	NavigationTarget,
+	ViewActivity,
+	app,
+} from "@desk-framework/frame-core";
 import { contactIcon } from "~/icons";
 import { Contact } from "~/models/Contact";
 import { ContactsService } from "~/services/ContactsService";

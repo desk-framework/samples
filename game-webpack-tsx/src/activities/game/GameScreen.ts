@@ -2,10 +2,10 @@ import {
 	AsyncTaskQueue,
 	DialogViewActivity,
 	PageViewActivity,
-	UIComponentEvent,
 	UITextField,
+	ViewEvent,
 	app,
-} from "desk-frame";
+} from "@desk-framework/frame-core";
 import { GameState } from "~/models/GameState";
 import { SettingsDialog } from "../settings/SettingsDialog";
 import correction from "./correction";
@@ -48,13 +48,13 @@ export class GameScreen extends PageViewActivity {
 		await dialog.activateAsync();
 	}
 
-	onAnswerInput(e: UIComponentEvent<UITextField>) {
+	onAnswerInput(e: ViewEvent<UITextField>) {
 		if (!e.source.value) return;
 		let numbers = e.source.value.replace(/^0+|\D/g, "");
 		e.source.value = numbers.slice(0, 3);
 	}
 
-	async onAnswerEntered(e: UIComponentEvent<UITextField>) {
+	async onAnswerEntered(e: ViewEvent<UITextField>) {
 		let answer = +e.source.value!;
 		if (!answer) return;
 		this.game.next(answer);

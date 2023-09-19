@@ -1,4 +1,9 @@
-import { Binding, RenderContext, UIColor, View } from "desk-frame";
+import {
+	Binding,
+	RenderContext,
+	UIColor,
+	View,
+} from "@desk-framework/frame-core";
 
 /** Data to be displayed in a chart, each bar with its value and label */
 export type ChartData = Array<{ label: string; value: number }>;
@@ -35,7 +40,7 @@ export class ChartView extends View {
 	height = 200;
 
 	/** The color of all bars in the chart; defaults to `UIColor.Primary` */
-	barColor = UIColor.Primary;
+	barColor = UIColor["@primary"];
 
 	/** Renderer implementation */
 	render(callback: RenderContext.RenderCallback) {
@@ -74,7 +79,7 @@ export class ChartView extends View {
 		for (let bar of this.data) {
 			ctx.fillStyle = String(this.barColor);
 			ctx.fillRect(x, this.height - PADDING, BAR_WIDTH, -bar.value * vf);
-			ctx.fillStyle = String(UIColor.Text);
+			ctx.fillStyle = String(UIColor["@text"]);
 			ctx.textAlign = "center";
 			ctx.fillText(bar.label, x + BAR_WIDTH / 2, this.height - 5);
 			x += space + BAR_WIDTH;

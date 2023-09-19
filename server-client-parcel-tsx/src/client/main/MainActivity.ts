@@ -1,4 +1,4 @@
-import { PageViewActivity, app } from "desk-frame";
+import { PageViewActivity, app } from "@desk-framework/frame-core";
 import page from "./page.js";
 import type { HelloAPI } from "../infra/HelloApi.js";
 import type { Hello } from "../../shared/Hello.js";

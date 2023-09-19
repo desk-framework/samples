@@ -1,27 +1,19 @@
 import {
-	UICell,
-	UIColor,
+	UIButton,
 	UIColumn,
-	UIHeading3,
-	UIOppositeRow,
-	UIOutlineButton,
+	UIHeading2Label,
 	UIPrimaryButton,
 	UIRow,
 	UISpacer,
-} from "desk-frame";
+} from "@desk-framework/frame-core";
 import LabeledTextField from "~/views/LabeledTextField";
+import PopupDialogCell from "~/views/PopupDialogCell";
 
-export default UICell.with(
-	{
-		background: UIColor.Background,
-		margin: { top: 32, bottom: "auto" },
-		dimensions: { width: "100%", maxWidth: 480 },
-		padding: 16,
-		borderRadius: 8,
-	},
+export default PopupDialogCell.with(
+	{ margin: { top: 32, bottom: "auto" } },
 	UIColumn.with(
 		{ spacing: 8, onEnterKeyPress: "Save" },
-		UIRow.with(UIHeading3.withText("New contact")),
+		UIRow.with(UIHeading2Label.withText("New contact")),
 		LabeledTextField.with({
 			formField: "fullName",
 			label: "Name",
@@ -32,9 +24,10 @@ export default UICell.with(
 			label: "Email",
 		}),
 	),
-	UISpacer.withHeight(16),
-	UIOppositeRow.with(
-		UIOutlineButton.withLabel("Cancel", "Close"),
+	UISpacer.withHeight(32),
+	UIRow.with(
+		{ align: "end" },
+		UIButton.withLabel("Cancel", "Close"),
 		UIPrimaryButton.withLabel("Save", "Save"),
 	),
 );

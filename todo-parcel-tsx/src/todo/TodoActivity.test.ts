@@ -1,12 +1,12 @@
-import { TodoItem } from "../model/TodoItem.js";
-import { TodoActivity } from "./TodoActivity.js";
 import {
 	TestCase,
 	describe,
 	expect,
 	test,
 	useTestContext,
-} from "@desk-framework/test";
+} from "@desk-framework/frame-test";
+import { TodoItem } from "../model/TodoItem.js";
+import { TodoActivity } from "./TodoActivity.js";
 
 describe("TodoActivity", (ctx) => {
 	let activity: TodoActivity;

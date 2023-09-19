@@ -1,4 +1,4 @@
-import { ManagedObject } from "desk-frame";
+import { ManagedObject } from "@desk-framework/frame-core";
 import { NumberBuffer } from "./NumberBuffer";
 
 const DEFAULT_TIME_SEC = 60;

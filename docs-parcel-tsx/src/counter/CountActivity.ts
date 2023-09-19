@@ -1,4 +1,4 @@
-import { PageViewActivity, app } from "desk-frame";
+import { PageViewActivity, app } from "@desk-framework/frame-core";
 import page from "./page.js";
 
 export class CountActivity extends PageViewActivity {

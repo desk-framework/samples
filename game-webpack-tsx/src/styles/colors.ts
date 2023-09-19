@@ -1,7 +1,7 @@
-import { UIColor } from "desk-frame";
+import { UIColor } from "@desk-framework/frame-core";
 
-export default {
-	Primary: UIColor.Orange,
-	Text: UIColor.Orange,
-	Background: UIColor.Purple.brighten(-0.2),
-};
+export default [
+	["primary", UIColor["@orange"]],
+	["text", UIColor["@orange"]],
+	["background", UIColor["@purple"].brighten(-0.2)],
+] as const;

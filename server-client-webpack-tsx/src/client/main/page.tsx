@@ -1,17 +1,19 @@
-import { JSX, UIColor, UIIcon, bound } from "desk-frame";
+import { JSX, bound } from "@desk-framework/frame-core";
 
 export default (
 	<cell>
 		<conditional state={bound("loading")}>
-			<label>Loading...</label>
+			<label bold>Loading...</label>
 		</conditional>
 		<conditional state={bound("error")}>
-			<label icon={UIIcon.Close} iconColor={UIColor.Red}>
+			<label icon="@close" iconColor="@red">
 				Oops, an error occurred!
 			</label>
 		</conditional>
 		<conditional state={bound("hello")}>
-			<label>Hello, %[hello.name]</label>
+			<label icon="@check" iconColor="@green">
+				Hello, %[hello.name]
+			</label>
 		</conditional>
 	</cell>
 );

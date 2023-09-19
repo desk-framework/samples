@@ -1,4 +1,8 @@
-import { NavigationTarget, UITheme, ViewActivity } from "desk-frame";
+import {
+	NavigationTarget,
+	UITheme,
+	ViewActivity,
+} from "@desk-framework/frame-core";
 import modal from "./modal";
 
 export default class MenuModalActivity extends ViewActivity {
@@ -10,8 +14,8 @@ export default class MenuModalActivity extends ViewActivity {
 			mode: "modal",
 			shade: UITheme.getModalDialogShadeOpacity(),
 			transform: {
-				show: "fade-in-right",
-				hide: "fade-out-left",
+				show: "@fade-in-right",
+				hide: "@fade-out-left",
 			},
 		};
 	}

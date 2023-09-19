@@ -1,15 +1,12 @@
 import {
-	UIButton,
-	UIColor,
 	UIColumn,
 	UIForm,
-	UIIcon,
 	UIIconButton,
 	UILabel,
 	UIRow,
-	UIStyleController,
+	UITextField,
 	bound,
-} from "desk-frame";
+} from "@desk-framework/frame-core";
 import LabeledTextField from "~/views/LabeledTextField";
 
 export default UIForm.with(
@@ -26,25 +23,30 @@ export default UIForm.with(
 			UILabel.withText("Company", { bold: true }),
 		),
 		UIRow.with(
-			UIStyleController.with(
-				{
-					textStyle: { color: UIColor.Text.alpha(0.5) },
-					state: bound.not("contact.company"),
+			// UIButton.with({
+			// 	buttonStyle: bound.not("contact.company").select(
+			// 		ShowCompanyButtonStyle.override({
+			// 			textColor: UIColor["@text"].alpha(0.5),
+			// 		}),
+			// 		ShowCompanyButtonStyle,
+			// 	),
+			// 	label: bound.string("contact.company.name").else("(None)"),
+			// 	icon: "@chevronNext",
+			// 	onClick: "ShowCompanySelector",
+			// }),
+			UITextField.with({
+				value: bound.string("contact.company.name").else("(None)"),
+				readOnly: true,
+				onClick: "ShowCompanySelector",
+				onEnterKeyPress: "ShowCompanySelector",
+				width: "100%",
+				textFieldStyle: {
+					css: { cursor: "pointer" },
 				},
-				UIButton.with({
-					shrinkwrap: false,
-					decoration: {
-						borderColor: UIColor.ControlBase.contrast(-0.2),
-						borderThickness: 1,
-					},
-					textStyle: { align: "start" },
-					label: bound.string("contact.company.name").else("(None)"),
-					icon: UIIcon.ExpandRight,
-					onClick: "ShowCompanySelector",
-				}),
-			),
+			}),
 			UIIconButton.with({
-				icon: UIIcon.Close,
+				icon: "@close",
+				iconSize: 20,
 				onClick: "ClearCompany",
 			}),
 		),

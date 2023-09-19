@@ -1,13 +1,13 @@
 import {
 	Binding,
 	JSX,
-	UIColor,
-	UIComponentEvent,
 	UIToggle,
 	ViewComposite,
+	ViewEvent,
 	bound,
-} from "desk-frame";
+} from "@desk-framework/frame-core";
 import { TodoItem } from "../model/TodoItem.js";
+import { ToggleLabel_Completed, ToggleLabel_Uncompleted } from "./styles";
 
 /**
  * View composite for a todo list item
@@ -18,37 +18,33 @@ export default ViewComposite.define<{
 	item?: TodoItem | Binding;
 }>(
 	<row height={48}>
-		<style
+		<toggle
+			label={bound.string("item.title")}
 			state={bound.boolean("item.completed")}
-			textStyle={{ strikeThrough: true, color: UIColor.Text.alpha(0.5) }}
-		>
-			<toggle
-				state={bound.boolean("item.completed")}
-				decoration={{ padding: 4 }}
-				textStyle={{ fontSize: 18 }}
-				onChange="ToggleChange"
-				label={bound.string("item.title")}
-			/>
-		</style>
+			labelStyle={bound
+				.boolean("item.completed")
+				.select(ToggleLabel_Completed, ToggleLabel_Uncompleted)}
+			onChange="ToggleChange"
+		/>
 	</row>,
 	class extends ViewComposite {
 		item?: TodoItem;
-		onToggleChange(e: UIComponentEvent<UIToggle>) {
-			if (e.source instanceof UIToggle && this.item) {
-				// check if completed state changed, update model
-				let checked = !!e.source.state;
-				if (this.item.completed !== checked) {
-					this.item.completed = checked;
-					this.item.emitChange();
-				}
-			}
-		}
-		onClick() {
-			if (this.item) {
-				// invert model state (will update checkbox binding)
-				this.item.completed = !this.item.completed;
+
+		onToggleChange(e: ViewEvent<UIToggle>) {
+			// check if completed state changed, update model
+			if (!this.item) return;
+			let checked = !!e.source.state;
+			if (this.item.completed !== checked) {
+				this.item.completed = checked;
 				this.item.emitChange();
 			}
+		}
+
+		onClick(e: ViewEvent) {
+			// invert model state (will update checkbox binding)
+			if (!this.item || e.source instanceof UIToggle) return;
+			this.item.completed = !this.item.completed;
+			this.item.emitChange();
 		}
 	},
 );

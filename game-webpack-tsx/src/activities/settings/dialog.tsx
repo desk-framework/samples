@@ -1,15 +1,16 @@
-import { JSX, UIColor } from "desk-frame";
+import { JSX, UIColor } from "@desk-framework/frame-core";
 import styles from "~/styles/styles";
 
 export default (
-	<cell style={styles.settingsDialog}>
+	<cell cellStyle={styles.SettingsDialog} position={{ gravity: "center" }}>
 		<h3>Settings</h3>
 		<spacer height={32} />
 		<column spacing={8}>
 			<row>
-				<expandedlabel>Multiply up to</expandedlabel>
+				<label>Multiply up to</label>
+				<spacer />
 				<textfield
-					style={styles.settingsNumberInputField}
+					textFieldStyle={styles.SettingsNumberInputField}
 					formField="maxNumber"
 					type="tel"
 					requestFocus
@@ -17,18 +18,19 @@ export default (
 				/>
 			</row>
 			<row>
-				<expandedlabel>Timer (seconds)</expandedlabel>
+				<label>Timer (seconds)</label>
+				<spacer />
 				<textfield
-					style={styles.settingsNumberInputField}
+					textFieldStyle={styles.SettingsNumberInputField}
 					formField="seconds"
 					type="tel"
 					onEnterKeyPress="Confirm"
 				/>
 			</row>
 		</column>
-		<separator margin={32} color={UIColor.Text} />
-		<oppositerow>
-			<borderlessbutton onClick="Confirm">Confirm</borderlessbutton>
-		</oppositerow>
+		<separator margin={32} color={UIColor["@text"]} />
+		<row align="end">
+			<plainbutton onClick="Confirm">Confirm</plainbutton>
+		</row>
 	</cell>
 );

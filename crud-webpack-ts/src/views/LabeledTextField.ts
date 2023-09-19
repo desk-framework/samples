@@ -8,7 +8,7 @@ import {
 	UITextField,
 	ViewComposite,
 	bound,
-} from "desk-frame";
+} from "@desk-framework/frame-core";
 
 export default ViewComposite.define(
 	(p: {
@@ -25,14 +25,17 @@ export default ViewComposite.define(
 				UILabel.withText(p.label, { bold: true }),
 			),
 			UITextField.with({
-				formField: p.formField,
-				dimensions: { width: "100%", height: p.multiline ? 120 : undefined },
-				requestFocus: p.requestFocus,
 				type: p.type,
 				multiline: p.multiline,
+				formField: p.formField,
+				textFieldStyle: {
+					width: "100%",
+					height: p.multiline ? 120 : undefined,
+				},
+				requestFocus: p.requestFocus,
 			}),
 			UICloseLabel.with({
-				textStyle: { color: UIColor.Red },
+				color: UIColor["@red"],
 				position: { gravity: "end", top: 4 },
 				hidden: bound.not("formContext.errors." + p.formField),
 				text: bound.string("formContext.errors." + p.formField + ".message"),

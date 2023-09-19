@@ -1,58 +1,63 @@
 import {
 	UIButton,
+	UIButtonStyle,
 	UICell,
 	UIColor,
-	UIHeading2,
+	UIHeading2Label,
 	UIRow,
 	UISpacer,
-	UIStyle,
-} from "desk-frame";
+	UITheme,
+} from "@desk-framework/frame-core";
 import { companyIcon, contactIcon } from "~/icons";
 
-const navButtonStyle = UIStyle.Button.extend(
+const navButtonStyle = UIButtonStyle.extend(
 	{
-		textStyle: { align: "start" },
-		decoration: { textColor: UIColor.Text, padding: 16, borderRadius: 0 },
+		background: UIColor["@clear"],
+		textAlign: "start",
+		textColor: UIColor["@text"],
+		padding: 16,
+		borderRadius: 0,
+		grow: 1,
 	},
 	{
-		hover: { decoration: { background: UIColor.Text.alpha(0.2) } },
-		pressed: {
-			decoration: {
-				background: UIColor.Primary,
-				textColor: UIColor.Primary.text(),
-			},
-		},
+		[UITheme.STATE_HOVERED]: true,
+		[UITheme.STATE_DISABLED]: false,
+		background: UIColor["@text"].alpha(0.2),
+	},
+	{
+		[UITheme.STATE_PRESSED]: true,
+		[UITheme.STATE_DISABLED]: false,
+		background: UIColor["@primary"],
+		textColor: UIColor["@primary"].text(),
 	},
 );
 
 export default UICell.with(
 	{
-		background: UIColor.Background,
-		dimensions: { width: "95%", maxWidth: 400 },
+		background: UIColor["@background"],
+		cellStyle: { width: "95%", maxWidth: 400 },
 		margin: { end: "auto" },
-		distribution: "start",
+		layout: { distribution: "start" },
 	},
 	UISpacer.withHeight(16),
-	UIRow.with({ padding: 16 }, UIHeading2.withText("Sample app")),
+	UIRow.with({ padding: 16 }, UIHeading2Label.withText("Sample app")),
 	UISpacer.withHeight(32),
 	UIRow.with(
 		UIButton.with({
 			icon: contactIcon,
-			shrinkwrap: false,
 			label: "Contacts",
 			navigateTo: "/",
 			iconMargin: 32,
-			style: navButtonStyle,
+			buttonStyle: navButtonStyle,
 		}),
 	),
 	UIRow.with(
 		UIButton.with({
 			icon: companyIcon,
-			shrinkwrap: false,
 			label: "Companies",
 			navigateTo: "/companies",
 			iconMargin: 32,
-			style: navButtonStyle,
+			buttonStyle: navButtonStyle,
 		}),
 	),
 );

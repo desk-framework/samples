@@ -1,4 +1,8 @@
-import { ActivationPath, PageViewActivity, app } from "desk-frame";
+import {
+	ActivationPath,
+	PageViewActivity,
+	app,
+} from "@desk-framework/frame-core";
 import { CompanyDetailActivity } from "~/activities/company-detail/CompanyDetailActivity";
 import { CompanyListActivity } from "~/activities/company-list/CompanyListActivity";
 import { ContactDetailActivity } from "~/activities/contact-detail/ContactDetailActivity";

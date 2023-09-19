@@ -26,7 +26,7 @@
  * ```
  */
 
-import { useWebContext } from "@desk-framework/webcontext";
+import { useWebContext } from "@desk-framework/frame-web";
 import { MainScreen } from "./main/MainScreen";
 
 const app = useWebContext();

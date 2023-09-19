@@ -1,4 +1,4 @@
-import { formatTestResults, runTestsAsync } from "@desk-framework/test";
+import { formatTestResults, runTestsAsync } from "@desk-framework/frame-test";
 import "./counter/CountActivity.test.js";
 
 runTestsAsync().then((result) => {

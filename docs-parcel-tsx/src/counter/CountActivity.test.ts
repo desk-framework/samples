@@ -1,4 +1,4 @@
-import { describe, test, useTestContext } from "@desk-framework/test";
+import { describe, test, useTestContext } from "@desk-framework/frame-test";
 import { CountActivity } from "./CountActivity.js";
 
 describe("Counter", (ctx) => {

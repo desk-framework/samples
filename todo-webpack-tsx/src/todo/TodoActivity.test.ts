@@ -4,7 +4,7 @@ import {
 	expect,
 	test,
 	useTestContext,
-} from "@desk-framework/test";
+} from "@desk-framework/frame-test";
 import { TodoItem } from "~/model/TodoItem.js";
 import { TodoActivity } from "./TodoActivity.js";
 

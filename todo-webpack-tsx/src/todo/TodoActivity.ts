@@ -4,7 +4,7 @@ import {
 	PageViewActivity,
 	UIFormContext,
 	UITextField,
-} from "desk-frame";
+} from "@desk-framework/frame-core";
 import { TodoItem } from "~/model/TodoItem.js";
 import page from "./page.js";
 

@@ -1,25 +1,23 @@
 import {
 	UIButton,
 	UICell,
-	UIColor,
 	UIColumn,
 	UIConditional,
-	UIOppositeRow,
-	UIOutlineButton,
+	UIPlainButton,
 	UIPrimaryButton,
 	UIRow,
 	UISeparator,
 	bound,
-} from "desk-frame";
+} from "@desk-framework/frame-core";
 import _fields from "./_fields";
 import _form from "./_form";
 import { pencilIcon, trashIcon } from "~/icons";
+import DangerButton from "~/views/DangerButton";
 
 export default UICell.with(
 	{
-		padding: { x: 16 },
-		distribution: "start",
-		dimensions: { maxWidth: 760 },
+		layout: { distribution: "start" },
+		cellStyle: { maxWidth: 760, padding: { x: 16 } },
 	},
 
 	UIConditional.with(
@@ -27,21 +25,21 @@ export default UICell.with(
 		UIColumn.with(
 			_fields,
 			UISeparator.with({ margin: 8 }),
-			UIOppositeRow.with(
-				{ height: 60, spacing: 16 },
-				UIOutlineButton.with({
+			UIRow.with(
+				{
+					align: "end",
+					height: 80,
+					spacing: 16,
+				},
+				UIPlainButton.with({
 					label: "Edit",
 					icon: pencilIcon,
 					onClick: "StartEdit",
 				}),
-				UIButton.with({
+				DangerButton.with({
 					label: "Delete",
 					icon: trashIcon,
 					onClick: "DeleteContact",
-					decoration: {
-						background: UIColor.Red,
-						textColor: UIColor.Red.text(),
-					},
 				}),
 			),
 		),
@@ -54,6 +52,7 @@ export default UICell.with(
 			UIRow.with(
 				{ height: 80 },
 				UIPrimaryButton.withLabel("Save", "SaveContact"),
+				UIButton.withLabel("Cancel", "CancelEdit"),
 			),
 		),
 	),

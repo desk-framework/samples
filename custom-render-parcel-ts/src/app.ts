@@ -4,7 +4,7 @@ import {
 	UILabel,
 	app,
 	useWebContext,
-} from "@desk-framework/webcontext";
+} from "@desk-framework/frame-web";
 import { ChartView, ChartData } from "./ChartView";
 
 // NOTE: for simplicity, the ChartView is directly rendered
@@ -13,7 +13,7 @@ import { ChartView, ChartData } from "./ChartView";
 
 export function showChart(id: string, title: string, data: ChartData) {
 	// create a preset view class with specified data
-	let PresetChart = ChartView.with({ data, barColor: UIColor.Red });
+	let PresetChart = ChartView.with({ data, barColor: UIColor["@red"] });
 
 	// create an render a cell containing the label and chart
 	let view = new UICell();

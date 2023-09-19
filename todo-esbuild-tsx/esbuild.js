@@ -4,7 +4,7 @@ import * as esbuild from "esbuild";
 // 1. copy Desk library file
 if (!fs.existsSync("dist")) fs.mkdirSync("dist");
 fs.copyFileSync(
-	"./node_modules/@desk-framework/webcontext/lib/desk-framework-web.es2018.iife.min.js",
+	"./node_modules/@desk-framework/frame-web/lib/desk-framework-web.es2018.iife.min.js",
 	"./dist/desk-framework-web.es2018.iife.min.js",
 );
 

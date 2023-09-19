@@ -1,5 +1,5 @@
 // import all tests
-import { formatTestResults, runTestsAsync } from "@desk-framework/test";
+import { formatTestResults, runTestsAsync } from "@desk-framework/frame-test";
 import "./todo/TodoActivity.test.js";
 
 runTestsAsync().then((result) => {

@@ -7,9 +7,9 @@
 		"trailingComma": "all"
 	},
 	"scripts": {
-		"clean": "rimraf dist .parcel-cache .test-run",
+		"clean": "rimraf dist dist-server .parcel-cache .test-run",
 		"start": "node dist-server/server",
-		"dev": "concurrently npm:dev:*",
+		"dev": "tsc -p tsconfig.server.json && concurrently npm:dev:*",
 		"dev:server-tsc": "tsc -w -p tsconfig.server.json",
 		"dev:server-run": "node --watch dist-server/server",
 		"dev:client": "parcel serve src/index.html",
@@ -20,13 +20,13 @@
 		"test": "tsc -p tsconfig.test.json && node .test-run/app.test.js"
 	},
 	"dependencies": {
-		"desk-frame": "next",
-		"@desk-framework/webcontext": "next",
+		"@desk-framework/frame-core": "next",
+		"@desk-framework/frame-web": "next",
 		"fastify": "^4.20.0",
 		"@fastify/static": "^6.10.2"
 	},
 	"devDependencies": {
-		"@desk-framework/test": "next",
+		"@desk-framework/frame-test": "next",
 		"@types/node": "latest",
 		"rimraf": "5.0",
 		"concurrently": "^8.2.0",

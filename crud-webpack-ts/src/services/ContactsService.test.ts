@@ -1,12 +1,17 @@
-import { describe, test, expect, useTestContext } from "@desk-framework/test";
-import { app } from "desk-frame";
+import {
+	describe,
+	test,
+	expect,
+	useTestContext,
+} from "@desk-framework/frame-test";
+import { app } from "@desk-framework/frame-core";
 import { ContactsService } from "./ContactsService";
 import { Contact } from "~/models/Contact";
 import { Company } from "~/models/Company";
 
 describe("Contacts service", (scope) => {
 	scope.beforeEach(() => {
-		useTestContext().addService("ContactsService", new ContactsService());
+		useTestContext().addService(new ContactsService());
 	});
 
 	test("Can create and delete contacts", (t) => {

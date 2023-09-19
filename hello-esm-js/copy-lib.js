@@ -23,5 +23,5 @@ fs.copyFileSync(
 console.log(`Writing ${DEST_PATH}.d.ts`);
 fs.writeFileSync(
 	DEST_PATH + BASE_NAME + ".d.ts",
-	`export * from "@desk-framework/webcontext"`,
+	`export * from "@desk-framework/frame-web"`,
 );

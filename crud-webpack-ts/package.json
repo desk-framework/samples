@@ -15,11 +15,11 @@
 		"test-watch": "webpack --config webpack.config.test.js --watch"
 	},
 	"dependencies": {
-		"@desk-framework/webcontext": "next",
-		"desk-frame": "next"
+		"@desk-framework/frame-web": "next",
+		"@desk-framework/frame-core": "next"
 	},
 	"devDependencies": {
-		"@desk-framework/test": "next",
+		"@desk-framework/frame-test": "next",
 		"@types/node": "^18.17.4",
 		"compression-webpack-plugin": "^10.0.0",
 		"heroicons": "^2.0.18",

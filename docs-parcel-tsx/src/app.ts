@@ -1,4 +1,4 @@
-import { useWebContext, app } from "@desk-framework/webcontext";
+import { useWebContext, app } from "@desk-framework/frame-web";
 import { CountActivity } from "./counter/CountActivity.js";
 
 useWebContext((options) => {
