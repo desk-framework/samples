@@ -1,2 +1,1 @@
-rm -r **/node_modules
-find . -type d -mindepth 2 -maxdepth 2 -execdir sh -c "pwd; npm update --include=dev" \;
+find * -type d -maxdepth 0 -exec sh -c "cd {}; pwd; rm -r node_modules; npm update && npm install" \;
