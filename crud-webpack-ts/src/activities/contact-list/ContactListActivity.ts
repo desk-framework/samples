@@ -1,7 +1,7 @@
 import {
 	ManagedList,
 	NavigationTarget,
-	ViewActivity,
+	Activity,
 	app,
 } from "@desk-framework/frame-core";
 import { contactIcon } from "~/icons";
@@ -9,9 +9,7 @@ import { Contact } from "~/models/Contact";
 import { ContactsService } from "~/services/ContactsService";
 import body from "./body";
 
-export class ContactListActivity extends ViewActivity {
-	static ViewBody = body;
-
+export class ContactListActivity extends Activity {
 	constructor() {
 		super();
 		this.title = "Contacts";
@@ -32,6 +30,10 @@ export class ContactListActivity extends ViewActivity {
 			}
 		},
 	);
+
+	protected ready() {
+		this.view = new body();
+	}
 
 	protected async handleNavigateAsync(target: NavigationTarget) {
 		if (this.activationPath) {

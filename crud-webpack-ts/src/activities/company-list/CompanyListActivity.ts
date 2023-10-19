@@ -1,7 +1,7 @@
 import {
 	ManagedList,
 	NavigationTarget,
-	ViewActivity,
+	Activity,
 	app,
 } from "@desk-framework/frame-core";
 import { companyIcon } from "~/icons";
@@ -9,9 +9,7 @@ import { Company } from "~/models/Company";
 import type { ContactsService } from "~/services/ContactsService";
 import body from "./body";
 
-export class CompanyListActivity extends ViewActivity {
-	static ViewBody = body;
-
+export class CompanyListActivity extends Activity {
 	constructor() {
 		super();
 		this.title = "Companies";
@@ -32,6 +30,10 @@ export class CompanyListActivity extends ViewActivity {
 			}
 		},
 	);
+
+	protected ready() {
+		this.view = new body();
+	}
 
 	protected async handleNavigateAsync(target: NavigationTarget) {
 		if (this.activationPath) {

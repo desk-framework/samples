@@ -1,18 +1,11 @@
-import {
-	ActivationPath,
-	UIFormContext,
-	ViewActivity,
-	app,
-} from "@desk-framework/frame-core";
+import { UIFormContext, Activity, app } from "@desk-framework/frame-core";
 import { companyIcon } from "~/icons";
 import { Company } from "~/models/Company";
 import { Contact } from "~/models/Contact";
 import type { ContactsService } from "~/services/ContactsService";
 import body from "./body";
 
-export class CompanyDetailActivity extends ViewActivity {
-	static ViewBody = body;
-
+export class CompanyDetailActivity extends Activity {
 	path = "company/:id";
 
 	icon = companyIcon;
@@ -25,10 +18,10 @@ export class CompanyDetailActivity extends ViewActivity {
 
 	mode: "view" | "edit" = "view";
 
-	protected async handlePathMatchAsync(match?: ActivationPath.Match) {
+	protected ready() {
 		this.mode = "view";
-		this.company = match?.id
-			? this.contactsServiceObserver.service!.getCompanyById(match.id)
+		this.company = this.pathMatch?.id
+			? this.contactsServiceObserver.service!.getCompanyById(this.pathMatch.id)
 			: undefined;
 		this.title = this.company?.name;
 		this.contacts = this.company?.id
@@ -36,7 +29,8 @@ export class CompanyDetailActivity extends ViewActivity {
 					this.company.id,
 			  )
 			: undefined;
-		await super.handlePathMatchAsync(match);
+
+		this.view = new body();
 	}
 
 	companyFormContext = new UIFormContext<{
@@ -81,8 +75,13 @@ export class CompanyDetailActivity extends ViewActivity {
 		}
 	}
 
-	onDeleteCompany() {
+	async onDeleteCompany() {
 		if (this.company) {
+			let confirm = await app.showConfirmDialogAsync([
+				"Delete company?",
+				"This action cannot be undone.",
+			]);
+			if (!confirm) return;
 			this.contactsServiceObserver.service!.deleteCompany(this.company);
 			app.navigate(":back");
 		}

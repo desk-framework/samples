@@ -12,7 +12,7 @@ import { ToggleLabel_Completed, ToggleLabel_Uncompleted } from "./styles";
 /**
  * View composite for a todo list item
  * - Takes an `item` preset for a model object
- * - Includes a checkbox and label, toggles between normal and completed
+ * - Includes a checkbox and label, toggles between normal and completed styles
  */
 export default ViewComposite.define<{
 	item?: TodoItem | Binding;
@@ -31,13 +31,9 @@ export default ViewComposite.define<{
 		item?: TodoItem;
 
 		onToggleChange(e: ViewEvent<UIToggle>) {
-			// check if completed state changed, update model
 			if (!this.item) return;
-			let checked = !!e.source.state;
-			if (this.item.completed !== checked) {
-				this.item.completed = checked;
-				this.item.emitChange();
-			}
+			this.item.completed = !!e.source.state;
+			this.item.emitChange();
 		}
 
 		onClick(e: ViewEvent) {

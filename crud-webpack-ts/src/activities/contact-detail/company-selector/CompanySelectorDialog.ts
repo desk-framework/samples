@@ -1,8 +1,7 @@
 import {
-	DialogViewActivity,
+	Activity,
 	UIList,
 	UITextField,
-	UITheme,
 	ViewEvent,
 	app,
 } from "@desk-framework/frame-core";
@@ -12,18 +11,11 @@ import dialog from "./dialog";
 
 let contacts = app.services.observeService<ContactsService>("ContactsService");
 
-export default class CompanySelectorDialog extends DialogViewActivity {
-	static ViewBody = dialog;
-
+export default class CompanySelectorDialog extends Activity {
 	constructor(company?: Company) {
 		super();
 		this.selectedCompany = company;
 		this.companyName = company?.name || "";
-		this.renderPlacement = {
-			mode: "modal",
-			shade: UITheme.getModalDialogShadeOpacity(),
-			transform: { show: "@fade-in-up", hide: "@fade-out-down" },
-		};
 	}
 
 	companyName: string;
@@ -32,13 +24,15 @@ export default class CompanySelectorDialog extends DialogViewActivity {
 	allCompanies: Company[] = [];
 	filteredCompanies: Company[] = [];
 
-	protected async beforeActiveAsync() {
-		await super.beforeActiveAsync();
+	protected ready() {
 		this.allCompanies = contacts
 			.service!.getAllCompanies()
 			.filter((c) => c.name)
 			.sort((a, b) => (b > a ? 1 : -1));
 		this.filteredCompanies = this.allCompanies;
+
+		this.view = new dialog();
+		app.showDialog(this.view);
 	}
 
 	onCloseModal() {

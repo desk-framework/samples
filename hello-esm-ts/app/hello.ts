@@ -4,7 +4,7 @@ import {
 	useWebContext,
 } from "./lib/desk-framework-web.es2020.esm.min.js";
 
-// Note: this is a MINIMAL example, check other folders for full app architecture
+// Note: this is a MINIMAL example, see other folders for full app architecture
 
 // step 1: create a button object
 let button = new UIPrimaryButton("Say hello");
@@ -20,4 +20,4 @@ button.listen((e) => {
 });
 
 // step 3: render the button
-useWebContext().render(button);
+useWebContext().render(button, "app");

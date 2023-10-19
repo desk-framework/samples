@@ -1,7 +1,7 @@
 import { app, UIPrimaryButton } from "@desk-framework/frame-core";
 import { useWebContext } from "@desk-framework/frame-web";
 
-// Note: this is a MINIMAL example, check other folders for full app architecture
+// Note: this is a MINIMAL example, see other folders for full app architecture
 
 // step 1: create a button object
 let button = new UIPrimaryButton("Say hello");
@@ -17,4 +17,4 @@ button.listen((e) => {
 });
 
 // step 3: render the button
-useWebContext().render(button);
+useWebContext().render(button, "app");

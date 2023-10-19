@@ -15,7 +15,6 @@ import {
 	bound,
 } from "@desk-framework/frame-core";
 import { companyIcon } from "~/icons";
-import PopupDialogCell from "~/views/PopupDialogCell";
 
 const ListCellStyle = UICellStyle.extend({
 	borderRadius: 2,
@@ -27,7 +26,8 @@ const SelectedListCellStyle = ListCellStyle.extend({
 	textColor: UIColor["@primary"].text(),
 });
 
-export default PopupDialogCell.with(
+export default UICell.with(
+	{ padding: 16, cellStyle: { width: 450, maxWidth: "100%" } },
 	UIColumn.with(
 		{ spacing: 8 },
 		UITextField.with({

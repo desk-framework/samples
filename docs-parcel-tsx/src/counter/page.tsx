@@ -2,7 +2,7 @@ import { JSX } from "@desk-framework/frame-core";
 
 export default (
   <cell>
-    <label labelStyle={{ fontSize: 36, bold: true }}>%[count]</label>
+    <label labelStyle={{ fontSize: 36, bold: true }}>Count: %[count]</label>
     <spacer height={32} />
     <row align="center">
       <button onClick="CountDown">Down</button>

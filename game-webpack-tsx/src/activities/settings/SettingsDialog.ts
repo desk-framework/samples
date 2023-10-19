@@ -1,14 +1,8 @@
-import {
-	DialogViewActivity,
-	UIFormContext,
-	app,
-} from "@desk-framework/frame-core";
+import { Activity, UIFormContext, app } from "@desk-framework/frame-core";
 import dialog from "./dialog";
 import { GameState } from "~/models/GameState";
 
-export class SettingsDialog extends DialogViewActivity {
-	static override ViewBody = dialog;
-
+export class SettingsDialog extends Activity {
 	constructor(public game: GameState) {
 		super();
 		this.formContext.set("maxNumber", game.multMax);
@@ -19,6 +13,11 @@ export class SettingsDialog extends DialogViewActivity {
 		maxNumber: 1,
 		seconds: 1,
 	});
+
+	protected ready() {
+		this.view = new dialog();
+		app.showDialog(this.view);
+	}
 
 	onConfirm() {
 		let values = this.formContext.serialize();

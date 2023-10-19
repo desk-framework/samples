@@ -14,7 +14,7 @@ export default (
 			{_header}
 
 			{/* List of items using composite view */}
-			<list items={bound.list("items")}>
+			<list items={bound.list("items")} animation={{ duration: 200 }}>
 				<TodoItem item={bound("item")} />
 			</list>
 
@@ -27,7 +27,7 @@ export default (
 					onEnterKeyPress="AddItem"
 					requestFocus
 				>
-					What do you want to do?
+					What needs to get done?
 				</textfield>
 				<iconbutton icon="@plus" onClick="AddItem" accessibleLabel="Add" />
 			</row>

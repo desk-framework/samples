@@ -38,7 +38,7 @@ export default UICell.with(
 				UIScrollContainer.with(
 					{ padding: 8 },
 					UIViewRenderer.with({
-						view: bound("masterDetailState.masterActivity"),
+						view: bound("masterDetailState.masterActivity.view"),
 					}),
 				),
 			),
@@ -57,21 +57,21 @@ export default UICell.with(
 							.and(bound("masterDetailState.detailActivity").not()),
 					},
 					UIViewRenderer.with({
-						view: bound("masterDetailState.masterActivity"),
+						view: bound("masterDetailState.masterActivity.view"),
 					}),
 				),
 			),
 			UIAnimationController.with(
 				{ showAnimation: "@fade-in-left" },
 				UIViewRenderer.with({
-					view: bound("masterDetailState.detailActivity"),
+					view: bound("masterDetailState.detailActivity.view"),
 				}),
 			),
 			UIConditional.with(
 				{
 					state: bound
 						.boolean("viewport.narrow")
-						.or("masterDetailState.detailActivity")
+						.or("masterDetailState.detailActivity.view")
 						.not(),
 				},
 				UICell.with(

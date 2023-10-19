@@ -2,7 +2,7 @@ import { JSX, UIColor } from "@desk-framework/frame-core";
 import styles from "~/styles/styles";
 
 export default (
-	<cell cellStyle={styles.SettingsDialog} position={{ gravity: "center" }}>
+	<cell cellStyle={styles.SettingsDialog}>
 		<h3>Settings</h3>
 		<spacer height={32} />
 		<column spacing={8}>

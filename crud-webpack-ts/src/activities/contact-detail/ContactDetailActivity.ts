@@ -1,16 +1,11 @@
-import {
-	ActivationPath,
-	UIFormContext,
-	ViewActivity,
-	app,
-} from "@desk-framework/frame-core";
+import { UIFormContext, Activity, app } from "@desk-framework/frame-core";
 import { contactIcon } from "~/icons";
 import { Contact } from "~/models/Contact";
 import { ContactsService } from "~/services/ContactsService";
 import body from "./body";
 import CompanySelectorDialog from "./company-selector/CompanySelectorDialog";
 
-export class ContactDetailActivity extends ViewActivity {
+export class ContactDetailActivity extends Activity {
 	static ViewBody = body;
 
 	path = "contact/:id";
@@ -24,13 +19,14 @@ export class ContactDetailActivity extends ViewActivity {
 
 	mode: "view" | "edit" = "view";
 
-	protected async handlePathMatchAsync(match?: ActivationPath.Match) {
+	protected ready() {
 		this.mode = "view";
-		this.contact = match?.id
-			? this.contactsServiceObserver.service!.getContactById(match.id)
+		this.contact = this.pathMatch?.id
+			? this.contactsServiceObserver.service!.getContactById(this.pathMatch.id)
 			: undefined;
 		this.title = this.contact?.fullName;
-		await super.handlePathMatchAsync(match);
+
+		this.view = new body();
 	}
 
 	contactFormContext = new UIFormContext<{

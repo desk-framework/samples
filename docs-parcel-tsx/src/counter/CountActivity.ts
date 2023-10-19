@@ -1,11 +1,14 @@
-import { PageViewActivity, app } from "@desk-framework/frame-core";
+import { Activity, app } from "@desk-framework/frame-core";
 import page from "./page.js";
 
-export class CountActivity extends PageViewActivity {
-  static ViewBody = page;
-
+export class CountActivity extends Activity {
   /** The current count */
   count = 0;
+
+  protected ready() {
+    this.view = new page();
+    app.showPage(this.view);
+  }
 
   /** Event handler: called when Up is clicked */
   onCountUp() {

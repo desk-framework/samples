@@ -1,27 +1,29 @@
-import { PageViewActivity, app } from "@desk-framework/frame-core";
+import { Activity, app } from "@desk-framework/frame-core";
 import page from "./page.js";
 import type { HelloAPI } from "../infra/HelloApi.js";
 import type { Hello } from "../../shared/Hello.js";
 
-export class MainActivity extends PageViewActivity {
-	static ViewBody = page;
+const helloApi = app.services.observeService<HelloAPI>("Infra.Hello");
 
+export class MainActivity extends Activity {
 	loading = true;
 	error = false;
 	hello?: Hello = undefined;
+	queue = this.createActiveTaskQueue();
 
-	helloApi = app.services.observeService<HelloAPI>("Infra.Hello");
-
-	protected async afterActiveAsync() {
-		await super.afterActiveAsync();
-		try {
-			this.hello = await this.helloApi.service?.fetchHello();
-			this.loading = false;
-		} catch (err) {
-			app.log.error(err);
-			this.loading = false;
-			this.error = true;
-		}
+	protected ready() {
+		this.view = new page();
+		app.showPage(this.view);
+		this.queue.add(async () => {
+			try {
+				this.hello = await helloApi.service?.fetchHello();
+				this.loading = false;
+			} catch (err) {
+				app.log.error(err);
+				this.loading = false;
+				this.error = true;
+			}
+		});
 	}
 }
 

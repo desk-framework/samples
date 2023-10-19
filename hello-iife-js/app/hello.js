@@ -1,6 +1,4 @@
-/// <reference path="../node_modules/@desk-framework/frame-web/lib/desk-framework-web.iife.d.ts" />
-
-// Note: this is a MINIMAL example, check other folders for full app architecture
+// Note: this is a MINIMAL example, see other folders for full app architecture
 
 // step 1: create a button object
 let button = new desk.UIPrimaryButton("Say hello");
@@ -16,4 +14,4 @@ button.listen((e) => {
 });
 
 // step 3: render the button
-desk.useWebContext().render(button);
+desk.useWebContext().render(button, "app");

@@ -1,10 +1,10 @@
-import { ManagedObject, ViewActivity } from "@desk-framework/frame-core";
+import { ManagedObject, Activity } from "@desk-framework/frame-core";
 
 export class MasterDetailViewState extends ManagedObject {
-	masterActivity?: ViewActivity = undefined;
-	detailActivity?: ViewActivity = undefined;
+	masterActivity?: Activity = undefined;
+	detailActivity?: Activity = undefined;
 
-	update(masterActivity: ViewActivity, detailActivity?: ViewActivity) {
+	update(masterActivity: Activity, detailActivity?: Activity) {
 		this.masterActivity = masterActivity;
 		this.detailActivity = detailActivity;
 	}

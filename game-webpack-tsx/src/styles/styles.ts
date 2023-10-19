@@ -49,8 +49,6 @@ export default {
 	SettingsDialog: UICellStyle.extend({
 		width: "100%",
 		maxWidth: 400,
-		background: UIColor["@background"],
-		dropShadow: 0.5,
 		padding: 32,
 	}),
 	SettingsNumberInputField: UITextFieldStyle.extend({

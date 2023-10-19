@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"checkJs": true,
+		"strict": true,
+		"target": "ESNext",
+		"module": "ESNext",
+		"types": [
+			"./node_modules/@desk-framework/frame-web/lib/desk-framework-web.iife.d.ts"
+		],
+		"paths": {
+			"@desk-framework/frame-core": [
+				"./node_modules/@desk-framework/frame-core/dist/index.d.ts"
+			],
+			"@desk-framework/frame-web": [
+				"./node_modules/@desk-framework/frame-web/dist/index.d.ts"
+			]
+		}
+	}
+}

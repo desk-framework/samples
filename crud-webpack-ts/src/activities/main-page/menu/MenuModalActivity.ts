@@ -1,23 +1,24 @@
 import {
 	NavigationTarget,
 	UITheme,
-	ViewActivity,
+	Activity,
+	app,
 } from "@desk-framework/frame-core";
 import modal from "./modal";
 
-export default class MenuModalActivity extends ViewActivity {
+export default class MenuModalActivity extends Activity {
 	static ViewBody = modal;
 
-	constructor() {
-		super();
-		this.renderPlacement = {
+	protected ready() {
+		this.view = new modal();
+		app.render(this.view, {
 			mode: "modal",
 			shade: UITheme.getModalDialogShadeOpacity(),
 			transform: {
 				show: "@fade-in-right",
 				hide: "@fade-out-left",
 			},
-		};
+		});
 	}
 
 	onCloseModal() {

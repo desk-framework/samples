@@ -5,7 +5,6 @@ import {
 	test,
 	useTestContext,
 } from "@desk-framework/frame-test";
-import { TodoItem } from "../model/TodoItem.js";
 import { TodoActivity } from "./TodoActivity.js";
 
 describe("TodoActivity", (ctx) => {
@@ -39,10 +38,7 @@ describe("TodoActivity", (ctx) => {
 
 	// Add an item from the list model and check the UI
 	test("New item shows in view", async (t) => {
-		let item = new TodoItem();
-		item.title = "Test item";
-		activity.items.add(item);
-
+		activity.list.addItem("Test item");
 		await t.expectOutputAsync(20, { text: "Test item" });
 	});
 
@@ -53,19 +49,18 @@ describe("TodoActivity", (ctx) => {
 		nItems: number,
 		itemsCompleted: number[],
 	) {
-		function makeTestItem(title: string, completed?: boolean) {
-			let item = new TodoItem();
-			item.title = title;
-			if (completed) item.completed = true;
-			return item;
-		}
 		for (let i = 0; i < nItems; i++) {
-			activity.items.add(makeTestItem("Test " + i, itemsCompleted.includes(i)));
+			let item = activity.list.addItem("Test " + i);
+			if (itemsCompleted.includes(i)) {
+				item.completed = true;
+				item.emitChange();
+			}
 		}
 
 		// Wait for items to be rendered
 		await test.expectOutputAsync(20, { text: "Test " + (nItems - 1) });
 
+		// Clear completed items
 		activity.onClearCompleted();
 	}
 

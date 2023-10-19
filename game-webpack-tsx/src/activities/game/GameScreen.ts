@@ -1,7 +1,6 @@
 import {
 	AsyncTaskQueue,
-	DialogViewActivity,
-	PageViewActivity,
+	Activity,
 	UITextField,
 	ViewEvent,
 	app,
@@ -11,9 +10,7 @@ import { SettingsDialog } from "../settings/SettingsDialog";
 import correction from "./correction";
 import page from "./page";
 
-export class GameScreen extends PageViewActivity {
-	static override ViewBody = page;
-
+export class GameScreen extends Activity {
 	constructor() {
 		super();
 		this.queue = this.createActiveTaskQueue((options) => {
@@ -24,6 +21,11 @@ export class GameScreen extends PageViewActivity {
 
 	game = new GameState();
 	queue: AsyncTaskQueue;
+
+	protected ready() {
+		this.view = new page();
+		app.showPage(this.view);
+	}
 
 	async tick() {
 		this.game.tick();
@@ -41,11 +43,11 @@ export class GameScreen extends PageViewActivity {
 
 	async onShowSettings() {
 		let dialog = new SettingsDialog(this.game);
-		this.attach(dialog, (target) => {
-			// resume game when dialog is closed
-			if (!target) this.game.resume();
-		});
-		await dialog.activateAsync();
+		await this.attach(dialog).activateAsync();
+
+		// wait for dialog to close, then resume game
+		for await (let _ of dialog.listen());
+		this.game.resume();
 	}
 
 	onAnswerInput(e: ViewEvent<UITextField>) {
@@ -67,20 +69,18 @@ export class GameScreen extends PageViewActivity {
 	}
 
 	async showAnswer() {
-		return new Promise<void>((resolve) => {
-			class AnswerDialog extends DialogViewActivity {
-				constructor() {
-					super();
-					this.activateAsync();
-				}
-				onContinue() {
-					this.unlink();
-					resolve();
-				}
+		class AnswerDialog extends Activity {
+			protected ready() {
+				this.view = new correction();
+				app.render(this.view, { mode: "dialog" });
 			}
-			AnswerDialog.ViewBody = correction;
-			this.attach(new AnswerDialog());
-		});
+			onContinue() {
+				this.unlink();
+			}
+		}
+		let answerDialog = this.attach(new AnswerDialog());
+		await answerDialog.activateAsync();
+		for await (let _ of answerDialog.listen());
 	}
 }
 

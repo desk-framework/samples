@@ -1,31 +1,22 @@
-import {
-	DialogViewActivity,
-	UIFormContext,
-	UITheme,
-	app,
-} from "@desk-framework/frame-core";
+import { Activity, UIFormContext, app } from "@desk-framework/frame-core";
 import { Contact } from "~/models/Contact";
 import { ContactsService } from "~/services/ContactsService";
 import dialog from "./dialog";
 
 let contacts = app.services.observeService<ContactsService>("ContactsService");
 
-export class NewContactDialog extends DialogViewActivity {
+export class NewContactDialog extends Activity {
 	static ViewBody = dialog;
-
-	constructor() {
-		super();
-		this.renderPlacement = {
-			mode: "dialog",
-			shade: UITheme.getModalDialogShadeOpacity(),
-			transform: { show: "@fade-in-down", hide: "@fade-out-up" },
-		};
-	}
 
 	formContext = new UIFormContext({
 		fullName: "",
 		email: "",
 	}).addRequired("fullName", "Please enter a name");
+
+	protected ready() {
+		this.view = new dialog();
+		app.showDialog(this.view);
+	}
 
 	onClose() {
 		this.unlink();

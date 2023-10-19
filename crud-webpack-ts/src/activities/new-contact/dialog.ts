@@ -1,5 +1,6 @@
 import {
 	UIButton,
+	UICell,
 	UIColumn,
 	UIHeading2Label,
 	UIPrimaryButton,
@@ -7,10 +8,9 @@ import {
 	UISpacer,
 } from "@desk-framework/frame-core";
 import LabeledTextField from "~/views/LabeledTextField";
-import PopupDialogCell from "~/views/PopupDialogCell";
 
-export default PopupDialogCell.with(
-	{ margin: { top: 32, bottom: "auto" } },
+export default UICell.with(
+	{ padding: 16, cellStyle: { width: 450, maxWidth: "100%" } },
 	UIColumn.with(
 		{ spacing: 8, onEnterKeyPress: "Save" },
 		UIRow.with(UIHeading2Label.withText("New contact")),

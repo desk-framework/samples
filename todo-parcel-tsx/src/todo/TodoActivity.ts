@@ -1,43 +1,51 @@
 import {
-	app,
+	Activity,
 	ManagedList,
-	PageViewActivity,
 	UIFormContext,
 	UITextField,
+	app,
 } from "@desk-framework/frame-core";
+import { TodoList } from "../model/TodoList.js";
 import { TodoItem } from "../model/TodoItem.js";
 import page from "./page.js";
 
-export class TodoActivity extends PageViewActivity {
-	static ViewBody = page;
-
+export class TodoActivity extends Activity {
 	/** Form context for new todo input text */
 	formContext = new UIFormContext({ title: "" });
 
-	/** True if any items are in completed state, updated using list observer */
+	/** Items to be displayed by the view */
+	items = new ManagedList<TodoItem>();
+
+	/** True if the list has any completed items */
 	hasCompleted = false;
 
-	/** List of items (attached, with an observer to update completed state) */
-	items = this.attach(new ManagedList().restrict(TodoItem), () => {
-		this.hasCompleted = this.items?.some((it) => it.completed);
+	/** Todo list model, with change handler */
+	list = this.attach(new TodoList(), (list) => {
+		if (!list) return;
+		this.items.replace(list.items());
+		this.hasCompleted = this.items.some((item) => item.completed);
 	});
 
+	/** Show the main page when ready */
+	protected ready() {
+		this.view = new page();
+		app.showPage(this.view);
+	}
+
+	/** Event handler: Add item with current title */
 	onAddItem() {
 		let title = this.formContext.get("title");
 		if (!title) return;
+		this.list.addItem(title);
+
+		// clear the form field and focus it again
 		this.formContext.clear();
-
-		let item = new TodoItem();
-		item.title = title;
-		this.items.add(item);
-
 		this.findViewContent(UITextField)[0]?.requestFocus();
 	}
 
+	/** Event handler: Clear completed items */
 	onClearCompleted() {
-		for (let item of this.items) {
-			if (item.completed) this.items.remove(item);
-		}
+		this.list.clearCompleted();
 	}
 }
 
