@@ -6,26 +6,26 @@ import type { ContactsService } from "~/services/ContactsService";
 import body from "./body";
 
 export class CompanyDetailActivity extends Activity {
-	path = "company/:id";
+	constructor(company: Company) {
+		super();
+		this.title = company.name;
+		this.company = company;
+	}
 
 	icon = companyIcon;
 
-	contactsServiceObserver =
-		app.services.observeService<ContactsService>("ContactsService");
-
-	company?: Company = undefined;
-	contacts?: Contact[] = undefined;
-
 	mode: "view" | "edit" = "view";
+	company: Company;
+
+	contactsServiceObserver =
+		this.observeService<ContactsService>("ContactsService");
+	contacts?: Contact[] = undefined;
 
 	protected ready() {
 		this.mode = "view";
-		this.company = this.pathMatch?.id
-			? this.contactsServiceObserver.service!.getCompanyById(this.pathMatch.id)
-			: undefined;
 		this.title = this.company?.name;
-		this.contacts = this.company?.id
-			? this.contactsServiceObserver.service!.getContactsByCompanyId(
+		this.contacts = this.company.id
+			? this.contactsServiceObserver.observed!.getContactsByCompanyId(
 					this.company.id,
 			  )
 			: undefined;
@@ -70,7 +70,7 @@ export class CompanyDetailActivity extends Activity {
 
 	onSaveCompany() {
 		if (this.company && this.updateCompany()) {
-			this.contactsServiceObserver.service!.saveCompany(this.company);
+			this.contactsServiceObserver.observed!.saveCompany(this.company);
 			this.mode = "view";
 		}
 	}
@@ -82,7 +82,7 @@ export class CompanyDetailActivity extends Activity {
 				"This action cannot be undone.",
 			]);
 			if (!confirm) return;
-			this.contactsServiceObserver.service!.deleteCompany(this.company);
+			this.contactsServiceObserver.observed!.deleteCompany(this.company);
 			app.navigate(":back");
 		}
 	}

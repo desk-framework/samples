@@ -1,6 +1,8 @@
 import { Binding, app, strf, useWebContext } from "@desk-framework/frame-web";
 import { MainPageActivity } from "./activities/main-page/MainPageActivity";
 import { ContactsService } from "./services/ContactsService";
+import { ContactListActivity } from "./activities/contact-list/ContactListActivity";
+import { CompanyListActivity } from "./activities/company-list/CompanyListActivity";
 
 useWebContext((options) => {
 	options.largeBreakpoint = 850;
@@ -17,5 +19,8 @@ if (process.env.NODE_ENV !== "production") {
 	});
 }
 
-app.addActivity(new MainPageActivity());
-app.addService(new ContactsService());
+app
+	.addService(new ContactsService())
+	.addActivity(new MainPageActivity(), true)
+	.addActivity(new ContactListActivity())
+	.addActivity(new CompanyListActivity());

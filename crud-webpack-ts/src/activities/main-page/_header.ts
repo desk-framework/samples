@@ -1,6 +1,6 @@
 import {
 	UIConditional,
-	UIHeading2Label,
+	UIHeading3Label,
 	UIIconButton,
 	UIPlainButton,
 	UIRow,
@@ -11,11 +11,10 @@ import {
 export default UIRow.with(
 	{ padding: 16, spacing: 0 },
 
+	// Show back arrow if we're on a detail page in narrow viewport
 	UIConditional.with(
 		{
-			state: bound
-				.boolean("viewport.narrow")
-				.and("masterDetailState.detailActivity"),
+			state: bound.boolean("viewport.narrow").and("navigationPath.detail"),
 		},
 		UIRow.with(
 			UIIconButton.with({
@@ -27,11 +26,12 @@ export default UIRow.with(
 		),
 	),
 
+	// Show menu button if we're not on a detail page in narrow viewport
 	UIConditional.with(
 		{
 			state: bound
 				.boolean("viewport.narrow")
-				.and("masterDetailState.detailActivity")
+				.and("navigationPath.detail")
 				.not(),
 		},
 		UIRow.with(
@@ -45,14 +45,12 @@ export default UIRow.with(
 		),
 	),
 
-	UIHeading2Label.with({
-		text: bound
-			.boolean("viewport.narrow")
-			.and("masterDetailState.detailActivity.title")
-			.or("masterDetailState.masterActivity.title"),
-		icon: bound("masterDetailState.detailActivity.icon").or(
-			"masterDetailState.masterActivity.icon",
-		),
+	// Show heading from detail or page title
+	UIHeading3Label.with({
+		text: bound("viewport.narrow")
+			.and("activePage.detailActivity.title")
+			.or("activePage.title"),
+		icon: bound("icon"),
 		iconSize: 24,
 	}),
 	UISpacer,

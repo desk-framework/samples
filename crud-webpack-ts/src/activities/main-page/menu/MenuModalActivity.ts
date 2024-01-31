@@ -7,8 +7,6 @@ import {
 import modal from "./modal";
 
 export default class MenuModalActivity extends Activity {
-	static ViewBody = modal;
-
 	protected ready() {
 		this.view = new modal();
 		app.render(this.view, {
@@ -25,8 +23,8 @@ export default class MenuModalActivity extends Activity {
 		this.unlink();
 	}
 
-	override async handleNavigateAsync(target: NavigationTarget) {
-		await super.handleNavigateAsync(target);
+	override async navigateAsync(target: NavigationTarget) {
+		await super.navigateAsync(target);
 		this.unlink();
 	}
 }

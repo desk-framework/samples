@@ -3,20 +3,19 @@ import page from "./page.js";
 import type { HelloAPI } from "../infra/HelloApi.js";
 import type { Hello } from "../../shared/Hello.js";
 
-const helloApi = app.services.observeService<HelloAPI>("Infra.Hello");
-
 export class MainActivity extends Activity {
 	loading = true;
 	error = false;
 	hello?: Hello = undefined;
 	queue = this.createActiveTaskQueue();
+	helloApi = this.observeService<HelloAPI>("Infra.Hello");
 
 	protected ready() {
 		this.view = new page();
 		app.showPage(this.view);
 		this.queue.add(async () => {
 			try {
-				this.hello = await helloApi.service?.fetchHello();
+				this.hello = await this.helloApi.observed?.fetchHello();
 				this.loading = false;
 			} catch (err) {
 				app.log.error(err);

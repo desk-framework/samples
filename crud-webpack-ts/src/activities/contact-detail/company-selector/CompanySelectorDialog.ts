@@ -9,8 +9,6 @@ import { Company } from "~/models/Company";
 import type { ContactsService } from "~/services/ContactsService";
 import dialog from "./dialog";
 
-let contacts = app.services.observeService<ContactsService>("ContactsService");
-
 export default class CompanySelectorDialog extends Activity {
 	constructor(company?: Company) {
 		super();
@@ -24,9 +22,12 @@ export default class CompanySelectorDialog extends Activity {
 	allCompanies: Company[] = [];
 	filteredCompanies: Company[] = [];
 
+	instance = Math.random();
+
 	protected ready() {
+		let contacts = app.services.get("ContactsService") as ContactsService;
 		this.allCompanies = contacts
-			.service!.getAllCompanies()
+			.getAllCompanies()
 			.filter((c) => c.name)
 			.sort((a, b) => (b > a ? 1 : -1));
 		this.filteredCompanies = this.allCompanies;
@@ -35,7 +36,11 @@ export default class CompanySelectorDialog extends Activity {
 		app.showDialog(this.view);
 	}
 
-	onCloseModal() {
+	onCancel() {
+		this.unlink();
+	}
+
+	onEscapeKeyPress() {
 		this.unlink();
 	}
 

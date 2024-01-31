@@ -23,17 +23,6 @@ export default UIForm.with(
 			UILabel.withText("Company", { bold: true }),
 		),
 		UIRow.with(
-			// UIButton.with({
-			// 	buttonStyle: bound.not("contact.company").select(
-			// 		ShowCompanyButtonStyle.override({
-			// 			textColor: UIColor["@text"].alpha(0.5),
-			// 		}),
-			// 		ShowCompanyButtonStyle,
-			// 	),
-			// 	label: bound.string("contact.company.name").else("(None)"),
-			// 	icon: "@chevronNext",
-			// 	onClick: "ShowCompanySelector",
-			// }),
 			UITextField.with({
 				value: bound.string("contact.company.name").else("(None)"),
 				readOnly: true,

@@ -35,7 +35,7 @@ export default UIColumn.with(
 				width: "100%",
 				hidden: bound.not("contact.company"),
 				label: bound.string("contact.company.name"),
-				navigateTo: bound.strf("/company/%s", "contact.company.id"),
+				navigateTo: bound.strf("/companies/%s", "contact.company.id"),
 			}),
 		),
 	),

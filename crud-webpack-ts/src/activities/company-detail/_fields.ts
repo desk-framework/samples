@@ -48,7 +48,7 @@ export default UIColumn.with(
 					icon: contactIcon,
 					iconSize: 20,
 					iconMargin: 8,
-					navigateTo: bound.strf("/contact/%s", "item.id"),
+					navigateTo: bound.strf("/contacts/%s", "item.id"),
 				}),
 			),
 			UIColumn.with({

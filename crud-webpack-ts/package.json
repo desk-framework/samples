@@ -15,19 +15,19 @@
 		"test-watch": "webpack --config webpack.config.test.js --watch"
 	},
 	"dependencies": {
-		"@desk-framework/frame-web": "next",
-		"@desk-framework/frame-core": "next"
+		"@desk-framework/frame-core": "next",
+		"@desk-framework/frame-web": "next"
 	},
 	"devDependencies": {
 		"@desk-framework/frame-test": "next",
-		"@types/node": "^18.17.4",
+		"@types/node": "^18.19.8",
 		"compression-webpack-plugin": "^10.0.0",
-		"heroicons": "^2.0.18",
-		"html-webpack-plugin": "^5.5.3",
+		"heroicons": "^2.1.1",
+		"html-webpack-plugin": "^5.6.0",
 		"rimraf": "5.0",
-		"ts-loader": "^9.4.4",
+		"ts-loader": "^9.5.1",
 		"typescript": "5.1",
-		"webpack": "^5.88.2",
+		"webpack": "^5.89.0",
 		"webpack-cli": "^5.1.4",
 		"webpack-dev-server": "^4.15.1"
 	}

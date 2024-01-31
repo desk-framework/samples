@@ -46,7 +46,7 @@ export default UICell.with(
 		UIButton.with({
 			icon: contactIcon,
 			label: "Contacts",
-			navigateTo: "/",
+			navigateTo: "/contacts",
 			iconMargin: 32,
 			buttonStyle: navButtonStyle,
 		}),

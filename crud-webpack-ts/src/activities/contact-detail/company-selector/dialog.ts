@@ -27,7 +27,7 @@ const SelectedListCellStyle = ListCellStyle.extend({
 });
 
 export default UICell.with(
-	{ padding: 16, cellStyle: { width: 450, maxWidth: "100%" } },
+	{ padding: 16, cellStyle: { width: 650, maxWidth: "100vw" } },
 	UIColumn.with(
 		{ spacing: 8 },
 		UITextField.with({
@@ -79,14 +79,14 @@ export default UICell.with(
 		UIRow.with(
 			UIButton.with({
 				label: "Cancel",
-				onClick: "CloseModal",
-				buttonStyle: { grow: 1 },
+				onClick: "Cancel",
+				buttonStyle: { shrink: 1, width: "50%" },
 			}),
 			UIPrimaryButton.with({
 				label: bound("selectedCompany.id").select("Select", "Confirm"),
 				disabled: bound("companyName").not(),
 				onClick: "Confirm",
-				buttonStyle: UIPrimaryButtonStyle.override({ grow: 1 }),
+				buttonStyle: UIPrimaryButtonStyle.override({ shrink: 1, width: "50%" }),
 			}),
 		),
 	),

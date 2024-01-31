@@ -6,26 +6,23 @@ import body from "./body";
 import CompanySelectorDialog from "./company-selector/CompanySelectorDialog";
 
 export class ContactDetailActivity extends Activity {
-	static ViewBody = body;
+	constructor(contact: Contact) {
+		super();
+		this.title = contact.fullName;
+		this.contact = contact;
+	}
 
-	path = "contact/:id";
+	mode: "view" | "edit" = "view";
+	contact: Contact;
 
 	icon = contactIcon;
 
 	contactsServiceObserver =
-		app.services.observeService<ContactsService>("ContactsService");
-
-	contact?: Contact = undefined;
-
-	mode: "view" | "edit" = "view";
+		this.observeService<ContactsService>("ContactsService");
 
 	protected ready() {
 		this.mode = "view";
-		this.contact = this.pathMatch?.id
-			? this.contactsServiceObserver.service!.getContactById(this.pathMatch.id)
-			: undefined;
-		this.title = this.contact?.fullName;
-
+		this.title = this.contact.fullName;
 		this.view = new body();
 	}
 
@@ -91,9 +88,9 @@ export class ContactDetailActivity extends Activity {
 		if (this.contact && this.updateContact()) {
 			let company = this.contact.company;
 			if (company && !company.id) {
-				this.contactsServiceObserver.service!.saveCompany(company);
+				this.contactsServiceObserver.observed!.saveCompany(company);
 			}
-			this.contactsServiceObserver.service!.saveContact(this.contact);
+			this.contactsServiceObserver.observed!.saveContact(this.contact);
 			this.mode = "view";
 		}
 	}
@@ -105,7 +102,7 @@ export class ContactDetailActivity extends Activity {
 				"This action cannot be undone.",
 			]);
 			if (!confirm) return;
-			this.contactsServiceObserver.service!.deleteContact(this.contact);
+			this.contactsServiceObserver.observed!.deleteContact(this.contact);
 			app.navigate(":back");
 		}
 	}

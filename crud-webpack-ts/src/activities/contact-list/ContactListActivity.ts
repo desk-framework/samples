@@ -1,24 +1,31 @@
 import {
+	Activity,
 	ManagedList,
 	NavigationTarget,
-	Activity,
 	app,
 } from "@desk-framework/frame-core";
 import { contactIcon } from "~/icons";
 import { Contact } from "~/models/Contact";
 import { ContactsService } from "~/services/ContactsService";
+import { ContactDetailActivity } from "../contact-detail/ContactDetailActivity";
+import { MainPageActivity } from "../main-page/MainPageActivity";
 import body from "./body";
 
 export class ContactListActivity extends Activity {
 	constructor() {
 		super();
 		this.title = "Contacts";
+		this.autoAttach("detailActivity");
 	}
+
+	navigationPageId = "contacts";
 
 	icon = contactIcon;
 	contacts = new ManagedList<Contact>();
 
-	contactsServiceObserver = app.services.observeService<ContactsService>(
+	detailActivity?: ContactDetailActivity;
+
+	contactsServiceObserver = this.observeService<ContactsService>(
 		"ContactsService",
 		(contactsService) => {
 			if (contactsService) {
@@ -33,12 +40,21 @@ export class ContactListActivity extends Activity {
 
 	protected ready() {
 		this.view = new body();
+		MainPageActivity.setActivePage(this);
 	}
 
-	protected async handleNavigateAsync(target: NavigationTarget) {
-		if (this.activationPath) {
-			let atRoot = this.activationPath.match("");
-			app.navigate(target, { replace: !atRoot });
+	protected async navigateAsync(target: NavigationTarget) {
+		let atRoot = !app.activities.navigationPath.detail;
+		app.navigate(target, { replace: !atRoot });
+	}
+
+	async handleNavigationDetailAsync(detail: string) {
+		let contact = this.contactsServiceObserver.observed?.getContactById(detail);
+		if (contact) {
+			this.detailActivity = new ContactDetailActivity(contact);
+			await this.detailActivity.activateAsync();
+		} else {
+			this.detailActivity = undefined;
 		}
 	}
 }

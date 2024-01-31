@@ -52,12 +52,12 @@ The following examples are included in this repository. Check the readme file in
     - **Language:** TypeScript, TSX
     - **Tests:** ES Build (watched)
 - **Client-server app** — a simple application that includes both a server and a client, with dev (watch/HMR) mode
-  - [TypeScript + Parcel](./server-client-parcel/)
+  - [TypeScript + Parcel](./server-client-parcel-tsx/)
     - **Bundler:** Parcel
     - **Import:** ES Module (Parcel)
     - **Language:** TypeScript, TSX
     - **Tests (client):** Compiled TS, run with Node
-  - [TypeScript + Webpack](./server-client-webpack/)
+  - [TypeScript + Webpack](./server-client-webpack-tsx/)
     - **Bundler:** Webpack
     - **Import:** ES Module (Webpack)
     - **Language:** TypeScript, TSX
@@ -67,6 +67,12 @@ The following examples are included in this repository. Check the readme file in
     - **Bundler:** Webpack
     - **Import:** ES Module (Webpack)
     - **Language:** TypeScript, TSX
+    - (No tests)
+- **Component with custom renderer** — a demonstration of a completely custom (canvas based) renderer for a chart component, on a static page
+  - [TypeScript + Parcel](./custom-render-parcel-ts/)
+    - **Bundler:** Parcel
+    - **Import:** ES Module (Parcel)
+    - **Language:** TypeScript
     - (No tests)
 - **Multi-page CRUD app** — a simple CRUD-style app with responsive master-detail views
   - [TypeScript + Webpack](./crud-webpack-ts/)
@@ -79,12 +85,6 @@ The following examples are included in this repository. Check the readme file in
     - **Bundler:** Webpack
     - **Import:** ES Module (Webpack)
     - **Language:** TypeScript, TSX
-    - (No tests)
-- **Component with custom renderer** — a demonstration of a completely custom (canvas based) renderer for a chart component, on a static page
-  - [TypeScript + Parcel](./custom-render-parcel-ts/)
-    - **Bundler:** Parcel
-    - **Import:** ES Module (Parcel)
-    - **Language:** TypeScript
     - (No tests)
 
 ## License

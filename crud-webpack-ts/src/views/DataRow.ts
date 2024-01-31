@@ -6,8 +6,8 @@ import {
 	ViewComposite,
 } from "@desk-framework/frame-core";
 
-export default ViewComposite.define<{ label: StringConvertible }, [ViewClass]>(
-	(p, content) =>
+export default ViewComposite.define(
+	(p: { label: StringConvertible }, content: ViewClass) =>
 		UIRow.with(
 			{ padding: { y: 12 } },
 			UILabel.with({

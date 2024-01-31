@@ -3,11 +3,7 @@ import { Contact } from "~/models/Contact";
 import { ContactsService } from "~/services/ContactsService";
 import dialog from "./dialog";
 
-let contacts = app.services.observeService<ContactsService>("ContactsService");
-
 export class NewContactDialog extends Activity {
-	static ViewBody = dialog;
-
 	formContext = new UIFormContext({
 		fullName: "",
 		email: "",
@@ -29,11 +25,12 @@ export class NewContactDialog extends Activity {
 	onSave() {
 		this.formContext.validateAll();
 		if (this.formContext.errorCount) return;
+		let contacts = app.services.get("ContactsService") as ContactsService;
 
 		let contact = Contact.create(this.formContext.serialize());
-		contacts.service?.saveContact(contact);
+		contacts.saveContact(contact);
 		this.unlink();
-		app.navigate("/contact/" + contact.id);
+		app.navigate("/contacts/" + contact.id);
 	}
 }
 
